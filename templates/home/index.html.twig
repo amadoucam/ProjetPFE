@@ -14,7 +14,7 @@
     {% for offre in offres %}
       <article>
         <h2>{{ offre.title }}</h2>
-        <div class="metadata">Publier le {{ offre.createdAt | date('d/m/Y')}} à {{ offre.createdAt | date('H:i') }} dans la catégorie {{ offre.categorie.title }}</div>
+        <div class="metadata">Publier le <i class="fa fa-calendar"></i>{{ offre.createdAt | date('d/m/Y')}} à {{ offre.createdAt | date('H:i') }} dans la catégorie {{ offre.categorie.title }}</div>
         <div class="content">
             <img src="{{ offre.image }}" alt="">
              {{ offre.content | raw }}
@@ -22,7 +22,8 @@
         </div>
       </article><br/>
     {% endfor %}
-    <h6 align = "center">{{ knp_pagination_render(offres) }}</h6>
+    {# <h6 align = "center">{{ knp_pagination_render(offres) }}</h6> #}
+    
 
 </div><br/><br/>
 
