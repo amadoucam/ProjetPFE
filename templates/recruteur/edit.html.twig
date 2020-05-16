@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification Compte{% endblock %}
+
+{% block body %}
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h1 align = "center">Modifier Recruteur</h1>
+
+  {#  {{ include('recruteur/_form.html.twig', {'button_label': 'Modifier'}) }}#}
+  {{ form_start(form)}}
+<div class="row">
+    <div class="col-sm-6">
+        {{ form_row(form.nom_entreprise,{'label':'Nom ','attr':{'placeholder':'Nom'}}) }}
+    </div>
+    <div class="col-sm-6">
+        {{ form_row(form.adresse,{'label':'Adresse ','attr':{'placeholder':'Adresse'}}) }} {#,'class': 'tst'#}
+    </div>
+</div>
+        <div class="row">
+    <div class="col-sm-6">
+        {{form_row(form.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}
+    </div>
+    <div class="col-sm-6">
+        {{form_row(form.code_postal,{'label':'Code postal ','attr':{'placeholder':'exp: 1000'}})}}
+    </div>
+        </div>
+        <div class="row">
+    <div class="col-sm-6">
+        {{form_row(form.ville,{'label':'Date de naissance '})}}
+    </div>
+    <div class="col-sm-6">
+        {{form_row(form.pays,{'label':'Nationalite','attr':{'placeholder':'Nationalite'}})}}
+    </div>
+        </div>
+        <div class="row">
+    <div class="col-sm-6">
+        {{form_row(form.secteur_activite,{'label':'Secteur d\'activité','attr':{'placeholder':'exp: gestion'}})}}
+    </div>
+    <div class="col-sm-6">
+        {{form_row(form.phone,{'label':'N° Tel','attr':{'placeholder':'tel'}})}}
+    </div>
+       </div>
+       <div class="row">
+    <div class="col-sm-6">
+        {{form_row(form.description,{'label':'Description','attr':{'placeholder':'description'}})}}
+    </div>
+    <div class="col-sm-6">
+        {{form_row(form.civility,{'label':'Etat civil','attr':{'placeholder':'tel'}})}}
+    </div>
+       </div>
+
+        <button class="btn btn-lg btn-info btn-block" type="submit">Update</button>
+        {{ form_end(form)}}
+
+    <br/><a class="btn btn-info" href="{{ path('recruteur_index') }}">back to list</a>
+    <hr>
+
+    {{ include('recruteur/_delete_form.html.twig') }}
+</div><br/><br/>
+{% endblock %}

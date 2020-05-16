@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1><b>Profile de : {{ app.user.nom }}  {{ app.user.prenom }}</b></h1>
+
+                <img src="{{ asset(app.user.avatar) }}" style="width:150px; height: 150px;border-radius: 50%;margin-right: 25px; ">
+                <form enctype="multipart/form-data" action="" method="POST">
+
+                    <input type="file" name="avatar">
+
+                    <input type="submit" class="pull-right btn btn-sm btn-primary" value="Modifer photo de profile">
+                </form>
+
+                <form method="post">
+                    <div class="form-group">
+                        <label for="name" class="control-label"><b>Username</b></label>
+                        <input type="text" name="name" placeholder="Entrer votre usernom ici" class="form-control" value="{{ app.user.username }}"/>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label"><b>email:</b></label>
+                        <input type="email" name="email" placeholder="Entrer votre email ici" class="form-control" value="{{ app.user.email }}"/>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="password" class="control-label"><b>Password :</b></label>
+                        <input id="txtNewPassword" type="password" name="password" placeholder="Entrer nouveau mot de passe" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label"><b>Confirmer Password :</b></label>
+                        <input id="txtConfirmPassword" type="password" name="ConfirmePassword" placeholder="Confirme votre mot de passe" class="form-control" onChange="checkPasswordMatch();"/>
+                        <span id='message'></span>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary"> Modifier </button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function checkPasswordMatch() {
+            var eltm1=document.getElementById("txtNewPassword");
+            var eltm2=document.getElementById("txtConfirmPassword");
+            var password = eltm1.value;
+            var confirmPassword = eltm2.value;
+            if (password != confirmPassword) {
+                eltm2.style.color = "red";
+            }
+            else
+                eltm2.style.color = "green";
+        }
+    </script>
+{% endblock %}

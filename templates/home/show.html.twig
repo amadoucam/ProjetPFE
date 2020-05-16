@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Offre {% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <article>
+        <h2>{{ offres.title }}</h2>
+        <div class="metadata">Publier le {{ offres.createdAt | date('d/m/Y') }} à {{ offres.createdAt | date('H:i') }} dans la catégorie {{ offres.categorie.title }} </div> {#politique#}
+        <div class="content">
+            <img src="{{ offres.image }}" alt=""><br/>
+            {{ offres.content | raw }}
+
+        </div>
+    </article>
+    <br/> 
+    {% if offres.recruteur %}
+        <a class="btn btn-info" href="{{ path('offres_edit', {'id': offres.id}) }}">Modifier Votre Offre</a>
+    {% endif %}
+    
+</div><br/><br/>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recruteur{% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h1 align = "center">Recruteur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ recruteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_entreprise</th>
+                <td>{{ recruteur.nomEntreprise }}</td>
+            </tr>
+            <tr>
+                <th>Secteur_activite</th>
+                <td>{{ recruteur.secteurActivite }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ recruteur.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ recruteur.email }}</td>
+            </tr>
+            <tr>
+                <th>Code_postal</th>
+                <td>{{ recruteur.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ recruteur.ville }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ recruteur.pays }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ recruteur.description }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ recruteur.phone }}</td>
+            </tr>
+            <tr>
+                <th>Civility</th>
+                <td>{{ recruteur.civility }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ recruteur.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ recruteur.roles ? recruteur.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ recruteur.password }}</td>
+            </tr> 
+        </tbody>
+    </table>
+
+    <a class="btn btn-info" href="{{ path('recruteur_index') }}">back to list</a>
+
+    <a class="btn btn-info" href="{{ path('recruteur_edit', {'id': recruteur.id}) }}">edit</a>
+    <hr>
+
+    {{ include('recruteur/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

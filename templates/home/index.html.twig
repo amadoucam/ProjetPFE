@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Nouvelle Offre {% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h1 align = "center">Les offres</h1>
+    {% for offre in offres %}
+      <article>
+        <h2>{{ offre.title }}</h2>
+        <div class="metadata">Publier le {{ offre.createdAt | date('d/m/Y')}} à {{ offre.createdAt | date('H:i') }} dans la catégorie {{ offre.categorie.title }}</div>
+        <div class="content">
+            <img src="{{ offre.image }}" alt="">
+             {{ offre.content | raw }}
+            <a href="{{ path('offres_annonce_show', {'id': offre.id}) }}" class="btn btn-primary">Lire la suite</a>
+        </div>
+      </article><br/>
+    {% endfor %}
+    <h6 align = "center">{{ knp_pagination_render(offres) }}</h6>
+
+</div><br/><br/>
+
+{% endblock %}

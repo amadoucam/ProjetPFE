@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Creation D'offre
+{% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="container">
+    {% if editMode %}
+    <h1>Modifier d'une offre</h1>
+    {% else %}
+    <h1>Création d'une offre</h1>
+    {% endif %}
+
+    {{ form_start(formOffre) }}
+    {{ form_row(formOffre.title, {'attr': {'placeholder' : "Titre de l'offre"}}) }}
+    {{ form_row(formOffre.categorie) }}
+    {{ form_row(formOffre.content, {'attr': {'placeholder' : "Contenu de l'offre"}}) }}
+    {{ form_row(formOffre.image, {'attr': {'placeholder' : "Image de l'offre"}}) }}
+    {{ form_row(formOffre.createdAt, {'attr': {'placeholder' : "Date Création de l'offre"}}) }}
+    <button type="submit" class="btn btn-info">
+        {% if editMode %}
+        Enregistrer
+        {% else %}
+        Ajout Offre
+        {% endif %}
+    </button>
+    {{ form_end(formOffre) }}
+
+</div><br/><br/>
+{% endblock %}

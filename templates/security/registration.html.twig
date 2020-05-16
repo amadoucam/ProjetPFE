@@ -1,0 +1,57 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Inscrivez vous!{% endblock %}
+
+{% block body %}
+      
+    <!---->
+    <br/>
+    <br/>
+    <br/> 
+    <br/>
+	<div class="container">
+       <ol class="breadcrumb">
+			<li class="active"><a href="{{ path('home') }}">Home</a></li>
+			<li class="active">Inscription</li>
+		</ol>
+       
+            <h2><strong>Si vous êtes une Entréprise<a href="{{ path('app_register') }}" class="btn btn-primary" >Créer Un Compte</a></strong><h2>
+            <hr>
+			<h3 class="thin text-center">Créer votre compte <strong>Candidat</strong></h3>
+			<p class="text-center text-muted">Connectez vous <a href="{{ path('security_login') }}">ICI</a> Si vous avez déjà un Compte.</p>
+							
+
+            <h3 class="fs-subtitle">Vos information personnelle</h3>
+			<hr>
+			
+			{{ form_start(form) }}
+    <div class="form-row">
+            <div class="col-md-4">{{form_row(form.nom,{'label':'Nom ','attr':{'placeholder':'Nom'}})}}</div>
+            <div class="col-md-4">{{form_row(form.prenom,{'label':'Prenom ','attr':{'placeholder':'Prenom','class': 'tst'}})}}</div>
+            <div class="col-md-4">{{form_row(form.civility) }}</div>
+            <div class="col-md-4">{{form_row(form.nationalite,{'label':'Nationalite','attr':{'placeholder':'Nationalite'}})}}</div>
+            <div class="col-md-4">{{form_row(form.adresse,{'label':'Adresse','attr':{'placeholder':'Adresse'}})}}</div>
+            <div class="col-md-4">{{form_row(form.tel,{'label':'N° Tel','attr':{'placeholder':'exp: +21656369119'}})}}</div>
+
+            <div class="col-md-4">{{form_row(form.level,{'label':'Niveau études'}) }}</div>
+            <div class="col-md-4">{{form_row(form.postal_code,{'lable':'Code postal' })}}</div>
+            <div class="col-md-4">{{form_row(form.datenaissance,{'label':'Date de naissance'}) }}</div>
+            <div class="col-md-2">{{ form_row(form.cv) }}</div>
+			<div class="col-md-2">{{ form_row(form.avatar,{'label':'Image'}) }}</div>
+	</div>
+    <div class="form-row">
+	<div class="col-md-6">{{form_row(form.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}</div>
+            <div class="col-md-6">{{form_row(form.username,{'label':'Username ','attr':{'placeholder':'Username'}})}}</div>
+            <div class="col-md-6">{{form_row(form.password,{'label':'Mot de passe ','attr':{'placeholder':'Mot de passe'}})}}</div>
+            <div class="col-md-6">{{form_row(form.confirm_password,{'label':'Confirmer Mot de passe ','attr':{'placeholder':'Confirmer Mot de passe'}})}}</div>
+        
+	</div>
+
+    <button type="submit" class="btn btn-primary">Inscription</button>
+    {{ form_end(form)}}
+	</div>
+	<br/>
+	<br/>
+
+
+{% endblock %}

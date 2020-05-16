@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Recruteur{% endblock %}
+
+{% block body %}
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="container">
+    <h1 align = "center">Créer un nouveau Recruteur</h1>
+
+    {{ include('recruteur/_form.html.twig') }}
+
+    <a class="btn btn-info" href="{{ path('recruteur_index') }}">back to list</a>
+</div>
+
+{% endblock %}

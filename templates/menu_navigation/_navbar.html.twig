@@ -1,0 +1,59 @@
+
+<!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="index.html"><span>E-recrutement</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="{{ path('home') }}">Home</a></li>
+          {% if is_granted('ROLE_USER') %}
+        {#  <li><a href="{{ path('profile') }}">EspaceMenbre</a></li> #}
+          {% else %}
+          <li><a href="{{ path('profil_index') }}">Espace_Entreprise</a></li> 
+          {% endif %}
+          <li><a href="{{ path('offres_annonce') }}">Offre</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="{{ path('contact') }}">Contact</a></li>
+
+          {% if is_granted('ROLE_USER') %}
+          <li class="drop-down"><a href="">{{ app.user.nom }} {{ app.user.prenom }}</a>
+            <ul>
+              {% if app.user.email != "" %}
+            {#  <li><a href="{{ path('candidat', {'id' : app.user.id }) }}">Mon Cv</a></li> #}
+             {# <li><a href="{{ path('profile')}}">Profile</a></li> #}
+              {% endif %}
+              <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
+            </ul>
+          </li>
+           {% elseif is_granted('ROLE_ADMIN') %}
+          <li class="drop-down"><a href="">{{ app.user.email }}</a>
+            <ul>
+              {% if app.user.email != "" %}
+              <li><a href="{{ path('profil_index')}}">Profile</a></li>
+             {# <li><a href="{{ path('offres_create') }}">Creér Offre</a></li>#}
+              <li><a href="{{ path('offres_create', {'id' : app.user.id }) }}">Creér Offre</a></li>
+              {#<li><a href="{{ path('offres_edit', {'id': offres.id}) }}">Modifier Offre</a></li>#}
+              {% endif %}
+              <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="drop-down"><a href="#">Connexion</a>
+            <ul>
+              <li><a href="{{ path('security_login')}}">Connexion</a></li>
+              <li><a href="{{ path('security_registration')}}">Inscription</a></li>
+            </ul>
+          </li>
+          {% endif %}
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->

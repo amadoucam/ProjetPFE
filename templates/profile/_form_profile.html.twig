@@ -1,0 +1,10 @@
+
+
+{{ form_start(form) }}
+    {{ form_row(form.nom_entreprise) }}
+    {{ form_row(form.adresse) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.secteur_activite) }}
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+

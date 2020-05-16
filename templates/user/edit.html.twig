@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+
+<div class = "container">
+    {% if app.user %}
+<div class="page">
+<br>
+<br>
+<br>
+        <h1 align = "center">Modifier vos informations</h1>
+        <br>
+        <br>
+
+        {{ form_start(form)}}
+<div class="row">
+    <div class="col-sm-6">
+        {{ form_row(form.nom,{'label':'Nom ','attr':{'placeholder':'Nom'}}) }}
+    </div>
+    <div class="col-sm-6">
+        {{ form_row(form.prenom,{'label':'Prenom ','attr':{'placeholder':'Prenom'}}) }} {#,'class': 'tst'#}
+    </div>
+</div>
+        <div class="row">
+    <div class="col-sm-6">
+        {{form_row(form.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}
+    </div>
+    <div class="col-sm-6">
+        {{form_row(form.username,{'label':'Username ','attr':{'placeholder':'Username'}})}}
+    </div>
+        </div>
+        
+    <div class="col">
+        {{form_row(form.datenaissance,{'label':'Date de naissance '})}}
+    </div>
+    <div class="col">
+        {{form_row(form.avatar,{'label':'Image'})}}
+    </div>
+    
+
+    <div class="row">
+    <div class="col-sm-6">
+        {{form_row(form.nationalite,{'label':'Nationalite','attr':{'placeholder':'Nationalite'}})}}
+    </div>
+    <div class="col-sm-6">
+        {{form_row(form.postal_code,{'label':'Code postal','attr':{'placeholder':'exple: 1000'}})}}
+    </div>
+    </div>
+        <div class="row">
+    <div class="col-sm-6">
+        {{form_row(form.adresse,{'label':'Adresse','attr':{'placeholder':'Adresse'}})}}
+    </div>
+    <div class="col-sm-6">
+        {{form_row(form.tel,{'label':'N° Tel','attr':{'placeholder':'tel'}})}}
+    </div>
+       </div>
+       <div class="row">
+    <div class="col-sm-6">
+        {{form_row(form.level,{'label':'Niveau','attr':{'placeholder':'Adresse'}})}}
+    </div>
+    <div class="col-sm-6">
+        {{form_row(form.civility,{'label':'Etat civil','attr':{'placeholder':'tel'}})}}
+    </div>
+    
+
+       </div>
+
+        <button class="btn btn-lg btn-info btn-block" type="submit">Update</button><br/>
+    
+        {{ form_end(form)}}
+        <div class="form-group col-md-12">
+            <a href="{{ path('nouveau_password') }}" class="btn btn-primary">changer mot de passe</a>
+        </div>
+
+</div>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Vous besoin de connecter avant !!
+        </div>     
+    {% endif %}
+</div> <br/>
+
+{% endblock %}

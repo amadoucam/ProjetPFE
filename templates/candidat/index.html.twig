@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class= "container">
+    {% if app.user %}
+    <br>
+    <br>
+    <br>
+    <br>
+
+<div class="page">
+    <div class="infophoto">
+        <div class="info">
+
+            <p><strong>{{app.user.nom}} &nbsp; {{app.user.prenom}}</strong></p>
+            <p>Date de naissance :{{ app.user.datenaissance |date('d/m/Y')}}</p>
+            <p>Adresse : {{app.user.adresse}}</p>
+            <p>Bienvenue: {{ app.user.civility }}</p>
+            <p>Tel : +216 {{app.user.tel}}</p>
+            <p>E-mail : {{app.user.email}}</p>
+            <p>Nationlité : {{app.user.nationalite}}</p>
+          {#app.user.specialite.titre#}  <p>Niveau : {{app.user.level}}</p>
+        </div>
+        <div class="photo">
+
+            <img src="{{ asset('images/' ~ app.user.avatar)}}" alt="John" style="width:150px; height: 150px;border-radius: 50%;margin-right: 25px;">
+
+        </div>
+    </div>
+    <!-- Formation -->
+<div class="section">
+        <h2>Formation  <a class="btn btn-primary btn-sm" href="{{ path('formation_new', {'id' : app.user.id }) }}"
+                          style="
+    float: right;
+">+</a></h2>    
+
+            {% for ls in listformation %}
+            <div class="row">
+                <div class="col-md-4"> <span class="titre">{{ ls.titre }}</span> <br>
+                {{  ls.anneescoler |date('d/m/Y') }} -
+                    {% if not ls.anneeterminal%}
+                    jusqu'à aujourd'hui
+                    {% else %}
+                    {{ ls.anneeterminal |date('d/m/Y')}} </div>
+                        {% endif %}
+
+                <div class="col-md-8"><span class="titre"> &nbsp;</span><span class="titre">{{ ls.diplome }}</span> &nbsp;avec  Mention &nbsp;{{ ls.mention }}
+
+                <a href="{{ path('supprimerFormation', {'id' : ls.id ,'id_user': app.user.id}) }}" class="btn btn-danger delete-article" data-id="{{ ls.id }}"
+                   style="
+    float: right;
+">-</a>
+                    <br>
+                    <hr>
+                </div>
+
+            </div>
+            {% endfor %}
+
+    </div>
+    <!-- experience professionneles -->
+    <div class="section">
+        <h2>Expérience Professionneles  <a class="btn btn-primary btn-sm" href="{{ path('experience_new', {'id' : app.user.id }) }}"
+                                           style="
+    float: right;
+">+</a> </h2>
+
+
+
+            <div class="row">
+            {% for ex in experience %}
+                <div class="col-md-4"> {{ ex.datedebut |date('d/m/Y')}} <span class="duree"> {{ ex.duree }} </span>
+                </div>
+
+                <div class="col-md-8"><span class="titre">{{ex.type}}</span> {{ex.lieu}}
+                <br>
+                    {{ ex.description }}
+                    <a href="{{ path('supprimerexperionce', {'id' : ex.id ,'id_user': app.user.id}) }}" class="btn btn-danger delete-article" style="
+    float: right;
+">-</a>
+                    <br>
+                    <hr>
+                </div>
+
+            {% endfor %}
+            </div>
+
+    </div>
+    <!-- langue -->
+    <div class="section">
+        <h2> Langues   <a class="btn btn-primary btn-sm" href="{{ path('langue_new', {'id' : app.user.id }) }}"
+                          style="
+    float: right;
+">+</a> </h2>
+
+
+        <div class="row">
+        {% for lg in langue %}
+        <div class="col-md-4">   <span class="titre">{{ lg.titre }}</span></div>
+            <div class="col-md-8">Niveau: {{ lg.niveau }}
+            <a href="{{ path('supprimerlangue', {'id' : lg.id ,'id_user': app.user.id}) }}" class="btn btn-danger delete-article"
+               style="
+    float: right;
+">-</a>
+                <br>
+                <hr>
+            </div>
+        {% endfor %}
+
+        </div>
+
+    </div>
+    <hr>
+    <a href = "{{ path('cv_candidat', {'id' : app.user.id }) }}" target="_blank">Voir en PDF</a><br/>
+    <a href="{{ asset('livre/' ~ app.user.cv) }}" target="_blank">{{ app.user.cv}}</a>
+
+</div>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Vous besoin de connecter avant !
+        </div>
+    {% endif %}
+ </div><br/><br/>
+
+{% endblock %}

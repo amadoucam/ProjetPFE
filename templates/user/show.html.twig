@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidat{% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class = "container">
+    <h1 align = "center">Candidat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr> 
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Datenaissance</th>
+                <td>{{ user.datenaissance ? user.datenaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nationalite</th>
+                <td>{{ user.nationalite }}</td>
+            </tr> 
+            <tr>
+                <th>Adresse</th>
+                <td>{{ user.adresse }}</td>
+            </tr> 
+            <tr>
+                <th>Tel</th>
+                <td>{{ user.tel }}</td>
+            </tr>
+            <tr>
+                <th>Avatar</th>
+                <td>{{ user.avatar }}</td>
+            </tr> 
+        </tbody>
+    </table>
+
+    <a class="btn btn-info" href="{{ path('user_index') }}">back to list</a>
+
+    <a class="btn btn-info" href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+    <hr>
+
+    {{ include('user/_delete_form.html.twig') }}
+</div> <br/>
+
+{% endblock %}

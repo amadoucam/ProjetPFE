@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}votre profil{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .cardProfil {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+        .cardProfil  button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #ea5454;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+        .cardProfil a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+        .bs button:hover, .bs a:hover {
+            opacity: 0.7;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+<br>
+<br>
+<br>
+<br>
+<br>
+        <h2 style="text-align:center">Votre profile</h2>
+        {% for flash_message in app.session.flashbag.get('success') %}
+            <div class="container alert alert-success" role="alert">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+
+        <div class="cardProfil">
+            <img src="{{ asset('images/' ~ app.user.avatar)}}" alt="John" style="width:100%">
+            <h1>{{ app.user.nom }} {{ app.user.prenom }} </h1>
+            {#app.user.specialite.titre  class="title"#}<p class="title">{{ app.user.level }}</p>
+            <p>{{app.user.nationalite}}</p>
+            <div style="margin: 24px 0;">
+                <p>{{ app.user.datenaissance |date('d/m/Y') }}</p>
+                <p>{{app.user.email}}</p>
+                <p>{{ app.user.tel}}</p>
+                <p>{{app.user.adresse}}</p>
+            </div>
+            <p class="bs"><a href="{{ path('user_edit', {'id' : app.user.id }) }}"><button>Edit</button></a></p>
+        </div>
+
+<script>
+    function checkPasswordMatch() {
+        var eltm1=document.getElementById("txtNewPassword");
+        var eltm2=document.getElementById("txtConfirmPassword");
+        var password = eltm1.value;
+        var confirmPassword = eltm2.value;
+        if (password != confirmPassword) {
+            eltm2.style.color = "red";
+        }
+        else
+            eltm2.style.color = "green";
+    }
+</script>
+
+    {% else %}
+    <div class="alert alert-danger" role="alert">
+        Vous besoin de connecter avant !!
+    </div>
+    {% endif %}
+    
+{% endblock %}

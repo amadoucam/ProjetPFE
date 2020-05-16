@@ -1,0 +1,50 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Inscrivez vous!{% endblock %}
+
+{% block body %}
+      
+    <!---->
+    <br/>
+    <br/>
+    <br/> 
+    <br/>
+    <!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li class="active"><a href="{{ path('home') }}">Home</a></li>
+			<li class="active"><mark>Inscription recruteur</mark></li>
+		</ol>
+
+		{{ form_start(registrationForm) }}
+    <div class="form-row">
+            <div class="col-md-4">{{form_row(registrationForm.nom_entreprise,{'label':'Nom ','attr':{'placeholder':'Nom De L\'entreprise'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.secteur_activite,{'label':'Secteur Activité ','attr':{'placeholder':'Secteur D\'activité','class': 'tst'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.civility) }}</div>
+            <div class="col-md-4">{{form_row(registrationForm.pays,{'label':'Nationalite','attr':{'placeholder':'Nationalite'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.code_postal,{'label':'Code Postal','attr':{'placeholder':'exp: 1000'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.phone,{'label':'N° Tel','attr':{'placeholder':'exp: +21656369119'}})}}</div>
+
+            <div class="col-md-4">{{form_row(registrationForm.ville,{'label':'Ville'}) }}</div>
+            <div class="col-md-4">{{form_row(registrationForm.adresse,{'lable':'Adresse' })}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.description,{'label':'Description'}) }}</div>
+	</div>
+    <div class="form-row">
+	        <div class="col-md-12">{{form_row(registrationForm.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}</div>
+            <div class="col-md-6">{{form_row(registrationForm.password,{'label':'Mot de passe ','attr':{'placeholder':'Mot de passe'}})}}</div>
+            <div class="col-md-6">{{form_row(registrationForm.confirm_password,{'label':'Confirmer Mot de passe ','attr':{'placeholder':'Confirmer Mot de passe'}})}}</div>
+        
+	</div>
+
+    <button type="submit" class="btn btn-primary">Inscription</button>
+    {{ form_end(registrationForm)}}
+	</div>
+	<br/>
+	<br/>
+
+		
+	</div>	<!-- /container -->
+
+
+{% endblock %}

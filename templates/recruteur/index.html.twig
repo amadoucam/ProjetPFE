@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recruteur index{% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+<div class = "container">
+    <h1 align = "center">Recruteur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_entreprise</th>
+                <th>Secteur_activite</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Code_postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Description</th>
+                <th>Phone</th>
+                <th>Civility</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recruteur in recruteurs %}
+            <tr>
+                <td>{{ recruteur.id }}</td>
+                <td>{{ recruteur.nomEntreprise }}</td>
+                <td>{{ recruteur.secteurActivite }}</td>
+                <td>{{ recruteur.adresse }}</td>
+                <td>{{ recruteur.email }}</td>
+               <td>{{ recruteur.codePostal }}</td>
+                <td>{{ recruteur.ville }}</td>
+                <td>{{ recruteur.pays }}</td>
+                <td>{{ recruteur.description }}</td>
+                <td>{{ recruteur.phone }}</td>
+                <td>{{ recruteur.civility }}</td>
+                <td>{{ recruteur.email }}</td>
+                <td>{{ recruteur.roles ? recruteur.roles|json_encode : '' }}</td>
+                <td>{{ recruteur.password }}</td> 
+                <td>
+                    <a href="{{ path('recruteur_show', {'id': recruteur.id}) }}" class="btn btn-info">show</a>
+                    <a href="{{ path('recruteur_edit', {'id': recruteur.id}) }}" class="btn btn-info">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-info" href="{{ path('recruteur_new') }}">Create new</a>
+    </div>
+
+{% endblock %}
