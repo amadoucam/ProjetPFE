@@ -13,7 +13,7 @@
         <ul>
           <li class="active"><a href="{{ path('home') }}">Home</a></li>
           {% if is_granted('ROLE_USER') %}
-        {#  <li><a href="{{ path('profile') }}">EspaceMenbre</a></li> #}
+          <li><a href="{{ path('profile') }}">EspaceMenbre</a></li> 
           {% else %}
           <li><a href="{{ path('profil_index') }}">Espace_Entreprise</a></li> 
           {% endif %}
@@ -26,7 +26,7 @@
             <ul>
               {% if app.user.email != "" %}
             {#  <li><a href="{{ path('candidat', {'id' : app.user.id }) }}">Mon Cv</a></li> #}
-             {# <li><a href="{{ path('profile')}}">Profile</a></li> #}
+              <li><a href="{{ path('profile')}}">Profile</a></li> 
               {% endif %}
               <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
             </ul>

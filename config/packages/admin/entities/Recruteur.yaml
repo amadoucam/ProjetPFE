@@ -1,0 +1,20 @@
+easy_admin:
+  entities:
+    Recruteur:
+      class: App\Entity\Recruteur
+      form:
+        fields:
+          - {property: 'nom_entreprise'}
+          - {property: 'secteur_activite'}
+          - {property: 'adresse'}
+          - {property: 'code_postal'}
+          - {property: 'ville'}
+          - {property: 'pays', type: 'country'}
+                    #- {property: 'pays', type: 'App\Form\RecruteurType', mapped: false}
+          - {property: 'description'}
+          - {property: 'civility'}
+          - {property: 'email', type: 'email'}
+          - {property: 'password'}
+          - {property: 'confirm_password'}
+          - {property: 'offres'}
+          - {property: 'phone', type: 'tel', icon: 'phone'}

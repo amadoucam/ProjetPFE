@@ -1,0 +1,21 @@
+easy_admin:
+  entities:
+    User:
+      class: App\Entity\User
+      form:
+        fields:
+          - {property: 'nom'}
+          - {property: 'prenom'}
+          - {property: 'password'}
+          - {property: 'confirm_password'}
+          - {property: 'email'}
+          - {property: 'username'}
+          - {property: 'datenaissance', type_options: { widget: 'single_text' }}
+          - {property: 'adresse'}
+          - {property: 'nationalite', type: 'country'}
+          - {property: 'postal_code'}
+          - {property: 'civility'}
+          - {property: 'level'}
+          - {property: 'cv', type: 'file', base_path: 'livre/'}
+          - {property: 'avatar', type: 'file', base_path: 'images/'}
+          - {property: 'tel', type: 'tel'}

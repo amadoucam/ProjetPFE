@@ -1,0 +1,12 @@
+easy_admin:
+  entities:
+    Offre:
+      class: App\Entity\Offre
+      templates: #edition template
+        edit: 'admin/post/edit.html.twig'
+      #list:
+        #fields:
+          #- {property: 'online', type: 'text'}
+        actions:
+          - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+          - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
