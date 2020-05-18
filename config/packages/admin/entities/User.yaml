@@ -6,7 +6,7 @@ easy_admin:
         fields:
           - {property: 'nom'}
           - {property: 'prenom'}
-          - {property: 'password'}
+          - {property: 'password', type: 'password', params: { max: 15 }}
           - {property: 'confirm_password'}
           - {property: 'email'}
           - {property: 'username'}
@@ -19,3 +19,9 @@ easy_admin:
           - {property: 'cv', type: 'file', base_path: 'livre/'}
           - {property: 'avatar', type: 'file', base_path: 'images/'}
           - {property: 'tel', type: 'tel'}
+      list:
+        #fields:
+          #- {property: 'online', type: 'text'}
+        actions:
+            - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+            - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}     

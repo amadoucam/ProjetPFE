@@ -18,3 +18,9 @@ easy_admin:
           - {property: 'confirm_password'}
           - {property: 'offres'}
           - {property: 'phone', type: 'tel', icon: 'phone'}
+      list:
+        #fields:
+          #- {property: 'online', type: 'text'}
+        actions:
+            - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+            - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}    

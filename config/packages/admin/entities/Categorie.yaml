@@ -3,10 +3,10 @@ easy_admin:
     Categorie:
       class: App\Entity\Categorie
       templates: #edition template
-        edit: 'admin/post/edit.html.twig'
-      #list:
+        edit: 'admin/edit.html.twig'
+      list:
         #fields:
           #- {property: 'online', type: 'text'}
         actions:
-          - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
-          - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}           
+            - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+            - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}           

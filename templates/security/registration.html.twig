@@ -36,8 +36,10 @@
             <div class="col-md-4">{{form_row(form.level,{'label':'Niveau études'}) }}</div>
             <div class="col-md-4">{{form_row(form.postal_code,{'lable':'Code postal' })}}</div>
             <div class="col-md-4">{{form_row(form.datenaissance,{'label':'Date de naissance'}) }}</div>
-            <div class="col-md-2">{{ form_row(form.cv) }}</div>
-			<div class="col-md-2">{{ form_row(form.avatar,{'label':'Image'}) }}</div>
+            <div class="">{{ form(form.cv) }}</div>
+            <input type = "file" name = "cv" id = "myfile">
+			<div class="">{{ form(form.avatar,{'label':'Image'}) }}</div>
+            
 	</div>
     <div class="form-row">
 	<div class="col-md-6">{{form_row(form.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}</div>

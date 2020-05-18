@@ -52,11 +52,10 @@ class RegistrationType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Veuillez charger un fichier PDF valide',
                     ])
                 ],
             ])
-            //specialite
             ->add('level', ChoiceType::class, [
                 'choices' => [
                     '-- exple: bac +1' => '',

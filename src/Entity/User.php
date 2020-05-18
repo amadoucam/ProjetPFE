@@ -318,7 +318,7 @@ class User implements UserInterface, \Serializable
             $this->tel,
             $this->level,
 
-        ) = unserialize($serialized);
+        ) = unserialize($serialized); 
     }
 
     public function getAvatar()

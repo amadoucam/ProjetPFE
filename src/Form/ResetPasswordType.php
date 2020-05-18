@@ -6,33 +6,43 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ResetPasswordType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('password', PasswordType::class, array(
-                'mapped' => false
-            ))
-            ->add('password', RepeatedType::class, array(
+            ->add('currentPassword', PasswordType::class, [
+                'constraints' => [
+                    new UserPassword(),
+                ],
+                'label' => 'label.current_password',
+                'attr' => [
+                    'autocomplete' => 'off',
+                ],
+            ])
+            ->add('newPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les deux mots de passe doivent être identiques',
-                'options' => array(
-                    'attr' => array(
-                        'class' => 'password-field'
-                    )
-                ),
-                'required' => true,
-            ))
-            ->add('submit', SubmitType::class, array(
-                'attr' => array(
-                    'class' => 'btn btn-primary btn-block'
-                )
-            ))
+                'constraints' => [
+                    new NotBlank(),
+                    new Length([
+                        'min' => 8,
+                        'max' => 15,
+                    ]),
+                ],
+                'first_options' => [
+                    'label' => 'label.new_password',
+                ],
+                'second_options' => [
+                    'label' => 'label.new_password_confirm',
+                ],
+            ])
         ;
     }
 
