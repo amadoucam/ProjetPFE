@@ -2,6 +2,7 @@ easy_admin:
   entities:
     Recruteur:
       class: App\Entity\Recruteur
+      password_encoding: { algorithm: 'bcrypt', cost: 12 }
       form:
         fields:
           - {property: 'nom_entreprise'}
@@ -14,8 +15,8 @@ easy_admin:
           - {property: 'description'}
           - {property: 'civility'}
           - {property: 'email', type: 'email'}
-          - {property: 'password'}
-          - {property: 'confirm_password'}
+          - {property: 'password', type: 'password', params: { max: 15 }}
+          #- {property: 'confirm_password'}
           - {property: 'offres'}
           - {property: 'phone', type: 'tel', icon: 'phone'}
       list:

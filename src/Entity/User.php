@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 //use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -12,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @Vich\Uploadable
  * @UniqueEntity(
  * fields= {"email"}, message="L'email indiqué est déjà utilisé")
  */
@@ -93,6 +97,12 @@ class User implements UserInterface, \Serializable
     private $avatar;
 
     /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="avatar")
+     * @var File
+     */
+    private $avatarFile;
+
+    /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $activation_token;
@@ -106,6 +116,12 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      */
     private $cv;
+
+     /**
+     * @Vich\UploadableField(mapping="user_contracts", fileNameProperty="cv")
+     * @var File
+     */
+    private $cvFile;
 
     /**
      * @ORM\Column(type="bigint")
@@ -357,12 +373,12 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getCv(): ?string
+    public function getCv() //: ?string
     {
         return $this->cv;
     }
 
-    public function setCv(string $cv): self
+    public function setCv( $cv) //: self
     {
         $this->cv = $cv;
 
@@ -384,6 +400,30 @@ class User implements UserInterface, \Serializable
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getCvFile()    //: ?string
+    {
+        return $this->cvFile;
+    }
+
+    public function setCvFile(File $cvFile = null)   //: self
+    {
+        $this->cvFile = $cvFile;
+
+        return $this;
+    }
+
+    public function getAvatarFile()
+    {
+        return $this->avatarFile;
+    }
+
+    public function setAvatarFile(File $avatarFile = null)
+    {
+        $this->avatarFile = $avatarFile;
+
+        return $this;
     }
 
 

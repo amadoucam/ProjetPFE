@@ -3,7 +3,7 @@
 namespace App\Form;
 
 
-use App\Entity\Recruteur;
+//use App\Entity\Recruteur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,7 +24,7 @@ class ResetPassType2 extends AbstractType
     {
         $resolver->setDefaults([
             // Configure your form options here
-          'data_class' => Recruteur::class,
+          //'data_class' => Recruteur::class,
         ]);
     }
 }

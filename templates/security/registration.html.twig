@@ -2,30 +2,45 @@
 
 {% block title %}Inscrivez vous!{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+    <link href="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+{% endblock %}
+
 {% block body %}
       
     <!---->
-    <br/>
-    <br/>
     <br/> 
     <br/>
-	<div class="container">
-       <ol class="breadcrumb">
-			<li class="active"><a href="{{ path('home') }}">Home</a></li>
-			<li class="active">Inscription</li>
-		</ol>
-       
-            <h2><strong>Si vous êtes une Entréprise<a href="{{ path('app_register') }}" class="btn btn-primary" >Créer Un Compte</a></strong><h2>
-            <hr>
-			<h3 class="thin text-center">Créer votre compte <strong>Candidat</strong></h3>
-			<p class="text-center text-muted">Connectez vous <a href="{{ path('security_login') }}">ICI</a> Si vous avez déjà un Compte.</p>
-							
-
-            <h3 class="fs-subtitle">Vos information personnelle</h3>
-			<hr>
-			
-			{{ form_start(form) }}
-    <div class="form-row">
+    <div class="container register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Bienvenue</h3>
+                        <p>Si vous avez dejà un compte veuillez vous connecter</p>
+                        <a href="{{ path('security_login') }}" class="btn btn-primary">Connexion</a>
+                        
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a href="{{ path('security_registration') }}" class="nav-link active" id="home-tab" role="tab" aria-controls="profile" aria-selected="true">Candidat</a>
+                                
+                            </li>
+                            <li class="nav-item">
+                                
+                                <a href="{{ path('app_register') }}" role="tab" aria-controls="profile" aria-selected="true">Recruteur</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Candidat</h3>
+                                <div class="row register-form">
+                                    {{ form_start(form) }}
+                                    <div class="form-row">
             <div class="col-md-4">{{form_row(form.nom,{'label':'Nom ','attr':{'placeholder':'Nom'}})}}</div>
             <div class="col-md-4">{{form_row(form.prenom,{'label':'Prenom ','attr':{'placeholder':'Prenom','class': 'tst'}})}}</div>
             <div class="col-md-4">{{form_row(form.civility) }}</div>
@@ -36,24 +51,29 @@
             <div class="col-md-4">{{form_row(form.level,{'label':'Niveau études'}) }}</div>
             <div class="col-md-4">{{form_row(form.postal_code,{'lable':'Code postal' })}}</div>
             <div class="col-md-4">{{form_row(form.datenaissance,{'label':'Date de naissance'}) }}</div>
-            <div class="">{{ form(form.cv) }}</div>
-            <input type = "file" name = "cv" id = "myfile">
-			<div class="">{{ form(form.avatar,{'label':'Image'}) }}</div>
-            
-	</div>
-    <div class="form-row">
-	<div class="col-md-6">{{form_row(form.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}</div>
+            <a class="col-md-6">{{ form_row(form.cv,{'label':'Cv'}) }} </a>
+			<div class="col-md-6">{{ form_row(form.avatar,{'label':'Image'}) }}</div>
+            <div class="col-md-6">{{form_row(form.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}</div>
             <div class="col-md-6">{{form_row(form.username,{'label':'Username ','attr':{'placeholder':'Username'}})}}</div>
             <div class="col-md-6">{{form_row(form.password,{'label':'Mot de passe ','attr':{'placeholder':'Mot de passe'}})}}</div>
-            <div class="col-md-6">{{form_row(form.confirm_password,{'label':'Confirmer Mot de passe ','attr':{'placeholder':'Confirmer Mot de passe'}})}}</div>
-        
-	</div>
+            <div class="col-md-6">{{form_row(form.confirm_password,{'label':'Confirmer Mot de passe ','attr':{'placeholder':'Confirmer Mot de passe'}})}}</div> 
+	                               </div> 
+                                   <button type="submit" class="btn btn-info">Inscription</button>
+                                   {{ form_end(form)}}
+                                </div>
+                            </div>
+ </div>
+                        </div>
+                    </div>
+                </div>
 
-    <button type="submit" class="btn btn-primary">Inscription</button>
-    {{ form_end(form)}}
-	</div>
-	<br/>
-	<br/>
+            </div><br/><br/><br/>
 
+            
+{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}

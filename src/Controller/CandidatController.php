@@ -30,51 +30,8 @@ class CandidatController extends AbstractController
         $user = $repository->find($id);
 
         $em = $this->getDoctrine()->getManager();
-        $listformation = $em->getRepository(formation::class)->findBy(array('user' => $user));
-        $langue = $em->getRepository(langue::class)->findBy(array('user'=>$user));
-        $experience = $em->getRepository(experience::class)->findBy(array('user' => $user));
         
-        return $this->render('candidat/index.html.twig',array('listformation'=>$listformation,
-            'langue'=>$langue,
-            'experience'=>$experience
-            ));
-    }
-
-     /**
-     * @Route("/cvcandidat/{id}", name="cv_candidat")
-     */
-    public function cvCandidat ($id)
-    {
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-        
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-
-        $repository = $this->getDoctrine()->getManager()->getRepository(user::class);
-        $user = $repository->find($id);
-
-        $em = $this->getDoctrine()->getManager();
-        $listformation = $em->getRepository(formation::class)->findBy(array('user' => $user));
-        $langue = $em->getRepository(langue::class)->findBy(array('user'=>$user));
-        $experience = $em->getRepository(experience::class)->findBy(array('user' => $user));
-
-        $html = $this->renderView('candidat/pdf.html.twig',array('listformation'=>$listformation,
-            'langue'=>$langue,
-            'experience'=>$experience
-            ));
-        
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-        
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-
-        // Output the generated PDF to Browser (force download)
-        $dompdf->stream("mypdf.pdf", [
-            "Attachment" => false
-        ]);  
+        return $this->render('candidat/index.html.twig');
     }
 
     /**
@@ -107,20 +64,6 @@ class CandidatController extends AbstractController
     }
 
     /**
-     * @Route("/supprimeformation/{id}/{id_user}", name ="supprimerFormation")
-     */
-
-    public function  supprimerinformation($id,$id_user){
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $repository = $this->getDoctrine()->getRepository(formation::class)->find($id);
-        $em = $this->getDoctrine()->getManager();
-        $em ->remove($repository);
-        $em->flush();
-        return $this->redirectToRoute('candidat', ['id' => $id_user]);
-
-    }
-
-    /**
      * @Route("/allCv" , name="allCv")
      */
     public function  allCv(){
@@ -130,93 +73,5 @@ class CandidatController extends AbstractController
         return $this->render('admin/allCv.html.twig', array('candidat'=>$candidat));
     }
 
-    /**
-     * @Route("/supprimelangue/{id}/{id_user}", name ="supprimerlangue")
-     */
-
-    public function  supprimerlangue($id, $id_user){
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $repository = $this->getDoctrine()->getRepository(langue::class)->find($id);
-        $em = $this->getDoctrine()->getManager();
-        $em ->remove($repository);
-        $em->flush();
-        return $this->redirectToRoute('candidat', ['id' => $id_user]);
-
-    }
-
-    /**
-     * @Route("/supprimerexperionce/{id}/{id_user}", name ="supprimerexperionce")
-     */
-    public function  supprimerexperionce($id,$id_user){
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $repository = $this->getDoctrine()->getRepository(experience::class)->find($id);
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($repository);
-        $em->flush();
-        return $this->redirectToRoute('candidat', ['id' => $id_user]);
-
-    }
-
-    /**
-     * @Route("/cv/{id}", name="cv")
-     */
-    public function cv($id)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        $repository = $this->getDoctrine()->getManager()->getRepository(user::class);
-        $user = $repository->find($id);
-
-        $em = $this->getDoctrine()->getManager();
-        $listformation = $em->getRepository(formation::class)->findBy(array('user' => $user));
-        $langue = $em->getRepository(langue::class)->findBy(array('user'=>$user));
-        $experience = $em->getRepository(experience::class)->findBy(array('user' => $user));
-        return $this->render('admin/showCv.html.twig',array('listformation'=>$listformation,
-            'langue'=> $langue,
-            'experience'=> $experience,
-            'user'=> $user
-        ));
-    }
-
-    /**
-     * @Route("/", name="home")
-     */
-    public function home(){
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('home.html.twig');
-    }
-
 }
 
-/*telecharger pdf
-$pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-        
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-
-        $repository = $this->getDoctrine()->getManager()->getRepository(user::class);
-        $user = $repository->find($id);
-
-        $em = $this->getDoctrine()->getManager();
-        $listformation = $em->getRepository(formation::class)->findBy(array('user' => $user));
-        $langue = $em->getRepository(langue::class)->findBy(array('user'=>$user));
-        $experience = $em->getRepository(experience::class)->findBy(array('user' => $user));
-
-        $html = $this->renderView('candidat/pdf.html.twig',array('listformation'=>$listformation,
-            'langue'=>$langue,
-            'experience'=>$experience
-            ));
-        
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-        
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-
-        // Output the generated PDF to Browser (force download)
-        $dompdf->stream("mypdf.pdf", [
-            "Attachment" => true
-        ]);  
-*/

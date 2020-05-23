@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *     message="L'email indiqué est déjà utilisé"
  * )
  */
-class Recruteur implements UserInterface
+class Recruteur implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -354,6 +354,47 @@ class Recruteur implements UserInterface
         $this->phone = $phone;
 
         return $this;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->nom_entreprise,
+            $this->password,
+            $this->ville,
+            $this->adresse,
+            $this->secteur_activite,
+            $this->postal_code,
+            $this->civility,
+            $this->description,
+            $this->pays,
+            $this->phone,
+
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->nom_entreprise,
+            $this->password,
+            $this->ville,
+            $this->adresse,
+            $this->secteur_activite,
+            $this->postal_code,
+            $this->civility,
+            $this->description,
+            $this->pays,
+            $this->phone,
+
+
+        ) = unserialize($serialized); 
     }
 
     public function __toString()

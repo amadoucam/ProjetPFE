@@ -4,7 +4,7 @@ security:
             algorithm: bcrypt  
 
         App\Entity\Recruteur:
-            algorithm: bcrypt
+            algorithm: argon2i
 
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -13,7 +13,7 @@ security:
         in_memory: { memory: ~ }
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Recruteur
                 property: email
         # used to reload user from session & other features (e.g. switch_user)
        
@@ -32,9 +32,9 @@ security:
             #remembre_me:
                 #secret: '%secret%'    
                     
-            guard:
-                authenticators:
-                    - App\Security\AppAuthenticator
+            #guard:
+                #authenticators:
+                    #- App\Security\AppAuthenticator
 
             logout:
                 path: security_logout

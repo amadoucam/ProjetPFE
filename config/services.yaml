@@ -7,6 +7,9 @@ parameters:
     locale: 'en'
     upload_directory: '%kernel.project_dir%/public/images'
     brochures_directory: '%kernel.project_dir%/public/livre'
+    
+    app.path.product_images: /images
+    app.path.user_contracts: /livre
 
 services:
     # default configuration for services in *this* file

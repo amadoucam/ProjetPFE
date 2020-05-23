@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+
+    {% if app.user %} {#.email == ""#}
+    <div class="container">
+<script type="text/javascript">
+    $(document).ready(function() {
+        //alert("cc");
+        // Setup - add a text input to each footer cell
+        $('#example tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder="Chercher '+title+'" />' );
+        } );
+        // DataTable
+        var table = $('#example').DataTable();
+        // Apply the search
+        table.columns().every( function () {
+            var that = this;
+            $( 'input', this.footer() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
+    } );
+</script>
+<h1 align = "center">Tous les Cv des Candidats</h1>
+
+<table id="example" class="table" style="width:100%"> {#display#}
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>E-mail</th>
+        <th>Niveau</th>
+        <th>action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for con in candidat %}
+
+    <tr>
+        <td>{{con.id}}</td>
+        <td>{{con.nom}}</td>
+        <td>{{con.prenom}}</td>
+        <td>{{con.email}}</td>
+        <td>{{con.level}}</td>
+        <td>  <a href="{{ asset('livre/' ~ app.user.cv) }}" target="_blank">Afficher cv</a></td>
+    </tr>
+
+  {% endfor %}
+
+    </tbody>
+    <tfoot>
+    <tr>{#
+        <th>id</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>E-mail</th>
+        <th>duree</th>
+        <th>action</th>
+    </tr> #}
+    </tfoot>
+</table>
+    </div><br/><br/>
+    {% endif %}
+
+{% endblock %}

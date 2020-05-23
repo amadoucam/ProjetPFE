@@ -2,49 +2,78 @@
 
 {% block title %}Inscrivez vous!{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+    <link href="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+{% endblock %}
+
 {% block body %}
       
     <!---->
-    <br/>
-    <br/>
     <br/> 
     <br/>
-    <!-- container -->
-	<div class="container">
+    <div class="container register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Bienvenue</h3>
+                        <p>Si vous avez dejà un compte veuillez vous connecter</p>
+                        <a href="{{ path('security_login') }}" class="btn btn-primary">Connexion</a>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 
-		<ol class="breadcrumb">
-			<li class="active"><a href="{{ path('home') }}">Home</a></li>
-			<li class="active"><mark>Inscription recruteur</mark></li>
-		</ol>
+                        
+                            <li class="nav-item">
+                                <a href="{{ path('security_registration') }}" role="tab" aria-controls="profile" aria-selected="true">Candidat</a>
+                                
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path('app_register') }}" class="nav-link active" id="home-tab" role="tab" aria-controls="profile" aria-selected="true">Recruteur</a>
+                                
+                            </li>
+                        </ul>
 
-		{{ form_start(registrationForm) }}
-    <div class="form-row">
-            <div class="col-md-4">{{form_row(registrationForm.nom_entreprise,{'label':'Nom ','attr':{'placeholder':'Nom De L\'entreprise'}})}}</div>
-            <div class="col-md-4">{{form_row(registrationForm.secteur_activite,{'label':'Secteur Activité ','attr':{'placeholder':'Secteur D\'activité','class': 'tst'}})}}</div>
+<div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Recruteur</h3>
+                                <div class="row register-form">
+                                    {{ form_start(registrationForm) }}
+                                <div class="form-row">
+            <div class="col-md-4">{{form_row(registrationForm.nom_entreprise,{'label':'Nom ','attr':{'placeholder':'Nom'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.secteur_activite,{'label':'Prenom ','attr':{'placeholder':'Prenom','class': 'tst'}})}}</div>
             <div class="col-md-4">{{form_row(registrationForm.civility) }}</div>
             <div class="col-md-4">{{form_row(registrationForm.pays,{'label':'Nationalite','attr':{'placeholder':'Nationalite'}})}}</div>
-            <div class="col-md-4">{{form_row(registrationForm.code_postal,{'label':'Code Postal','attr':{'placeholder':'exp: 1000'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.ville,{'label':'Adresse','attr':{'placeholder':'Adresse'}})}}</div>
             <div class="col-md-4">{{form_row(registrationForm.phone,{'label':'N° Tel','attr':{'placeholder':'exp: +21656369119'}})}}</div>
 
-            <div class="col-md-4">{{form_row(registrationForm.ville,{'label':'Ville'}) }}</div>
-            <div class="col-md-4">{{form_row(registrationForm.adresse,{'lable':'Adresse' })}}</div>
-            <div class="col-md-4">{{form_row(registrationForm.description,{'label':'Description'}) }}</div>
-	</div>
-    <div class="form-row">
-	        <div class="col-md-12">{{form_row(registrationForm.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}</div>
-            <div class="col-md-6">{{form_row(registrationForm.password,{'label':'Mot de passe ','attr':{'placeholder':'Mot de passe'}})}}</div>
-            <div class="col-md-6">{{form_row(registrationForm.confirm_password,{'label':'Confirmer Mot de passe ','attr':{'placeholder':'Confirmer Mot de passe'}})}}</div>
-        
-	</div>
+            <div class="col-md-4">{{form_row(registrationForm.description,{'label':'Niveau études'}) }}</div>
+            <div class="col-md-4">{{form_row(registrationForm.adresse,{'lable':'Code postal' })}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.code_postal,{'label':'Date de naissance'}) }}</div>
+            <div class="col-md-4">{{ form_row(registrationForm.email,{'label':'Cv'}) }}</div>
+			<div class="col-md-4">{{ form_row(registrationForm.password,{'label':'Image'}) }}</div>
+            <div class="">{{ form_row(registrationForm.confirm_password,{'label':'Image'}) }}</div>
+            
+	                           </div>       
+                                        <button type="submit" class="btn btn-info">Connexion</button>
+                                        {{ form_end(registrationForm)}}
+                                </div>
+                            </div>
+ </div>
+                        </div>
+                    </div>
+                </div>
 
-    <button type="submit" class="btn btn-primary">Inscription</button>
-    {{ form_end(registrationForm)}}
-	</div>
-	<br/>
-	<br/>
+            </div><br/><br/><br/>
 
-		
-	</div>	<!-- /container -->
+            
+{% endblock %}
 
-
+{% block javascripts %}
+    {{ parent() }}
+    <script src="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}

@@ -31,7 +31,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            //encode the plain password
             $recruteur->setPassword(
                 $passwordEncoder->encodePassword(
                     $recruteur,
@@ -73,9 +73,9 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/activer/{token}", name="activer")
+     * @Route("/activation/{token}", name="activer")
      */
-    public function activer($token, RecruteurRepository $recruteur)
+    public function activation($token, RecruteurRepository $recruteur)
     {
         // On recherche si un utilisateur avec ce token existe dans la base de données
         $recruteur = $recruteur->findOneBy(['activation_token' => $token]);
@@ -100,19 +100,19 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/pass-oublier", name="app_reset_password")
+     * @Route("/pass-oubli", name="app_reset_passworde")
      */
-    public function changerPassword (Request $request, RecruteurRepository $recruRepo, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $manager)
+    public function resetPassword (Request $request, RecruteurRepository $recruRepo, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $manager)
     {
-        $form = $this->createForm(ResetPassType2::class, $recruteur);
+        $form = $this->createForm(ResetPassType2::class);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
             //recuperation des données
-            $donnees = $form->getData();
+            $donnee = $form->getData();
             //si un utilisateur à cette email
-            $recruteur = $recruRepo->findOneByEmail($donnees['email']);
+            $recruteur = $recruRepo->findOneByEmail($donnee['email']);
             //si l'utilisateur n'existe pas
             if(!$recruteur) {
                 $this->addFlash('danger', 'Cette adresse mail n\'existe pas');
@@ -132,7 +132,7 @@ class RegistrationController extends AbstractController
             }
 
             //url de réinitialisation de mot de passe
-            $url = $this->generateUrl('app_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
+            $url = $this->generateUrl('app_passworde', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
             $message = (new \Swift_Message('Nouveau compte'))
                 // On attribue l'expéditeur
@@ -153,11 +153,11 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('security_login');
         }
         //on envoie vers la page de demande de l'é-mail
-        return $this->render('emails/reset_password.html.twig', ['emailForm' => $form->createView()]);
+        return $this->render('emails/resete_password.html.twig', ['form' => $form->createView()]);
     }
 
     /**
-     * @Route("/pass-oublier/{token}", name="app_password")
+     * @Route("/pass-oubli/{token}", name="app_passworde")
      */
     public function newPassword(Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder)
     {

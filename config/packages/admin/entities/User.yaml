@@ -7,7 +7,7 @@ easy_admin:
           - {property: 'nom'}
           - {property: 'prenom'}
           - {property: 'password', type: 'password', params: { max: 15 }}
-          - {property: 'confirm_password'}
+          #- {property: 'confirm_password'}
           - {property: 'email'}
           - {property: 'username'}
           - {property: 'datenaissance', type_options: { widget: 'single_text' }}
@@ -16,8 +16,8 @@ easy_admin:
           - {property: 'postal_code'}
           - {property: 'civility'}
           - {property: 'level'}
-          - {property: 'cv', type: 'file', base_path: 'livre/'}
-          - {property: 'avatar', type: 'file', base_path: 'images/'}
+          - {property: 'cvFile', type: 'vich_file'} #, base_path: 'livre/'
+          - {property: 'avatarFile', type: 'vich_image'} #, base_path: 'images/'
           - {property: 'tel', type: 'tel'}
       list:
         #fields:

@@ -4,7 +4,7 @@
     <div class="container d-flex">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>E-recrutement</span></a></h1>
+        <h1 class="text-light"><a href="{{ path('home') }}"><span>E-recrutement</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -25,7 +25,7 @@
           <li class="drop-down"><a href="">{{ app.user.nom }} {{ app.user.prenom }}</a>
             <ul>
               {% if app.user.email != "" %}
-            {#  <li><a href="{{ path('candidat', {'id' : app.user.id }) }}">Mon Cv</a></li> #}
+              <li><a href="{{ path('candidat', {'id' : app.user.id }) }}">Mon Cv</a></li> 
               <li><a href="{{ path('profile')}}">Profile</a></li> 
               {% endif %}
               <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
@@ -37,6 +37,7 @@
               {% if app.user.email != "" %}
               <li><a href="{{ path('profil_index')}}">Profile</a></li>
              {# <li><a href="{{ path('offres_create') }}">Creér Offre</a></li>#}
+              <li><a href="{{ path('allCv') }}">CV des Candidat</a></li>
               <li><a href="{{ path('offres_create', {'id' : app.user.id }) }}">Creér Offre</a></li>
               {#<li><a href="{{ path('offres_edit', {'id': offres.id}) }}">Modifier Offre</a></li>#}
               {% endif %}

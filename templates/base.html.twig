@@ -4,6 +4,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Bienvenue!!{% endblock %}</title>
+        
+        {% block stylesheets %}
         <!-- Favicons -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="{{ asset('Squadfree/assets/img/favicon_perso.png') }}" rel="icon">
@@ -22,7 +24,7 @@
 
         <!-- Template Main CSS File -->
         <link href="{{ asset('Squadfree/assets/css/style.css') }}" rel="stylesheet">
-        {% block stylesheets %}{% endblock %}
+        {% endblock %}
     </head>
     <body>
        
