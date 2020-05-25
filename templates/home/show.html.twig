@@ -23,12 +23,12 @@
         <a class="btn btn-info" href="{{ path('offres_edit', {'id': offres.id}) }}">Modifier Votre Offre</a>
     {% endif %}
 
-    {#{% if is_granted('ROLE_USER') %}#}
+   {#} {% if is_granted('ROLE_USER') %} #}
         <a class="btn btn-info" href="#">Postuler pour L'Offre</a> <br/>
         
             {{form(formPostuler)}}
         
-{#  {% endif %}   #} 
+  {#}  {% endif %}   #}
     
 </div><br/><br/>
 

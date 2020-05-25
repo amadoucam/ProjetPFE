@@ -51,8 +51,9 @@
             <div class="col-md-4">{{form_row(form.level,{'label':'Niveau études','attr':{'placeholder':'exp: Bac, Licence...'}})}}</div>
             <div class="col-md-4">{{form_row(form.postal_code,{'lable':'Code postal','attr':{'placeholder':'exp: 1000'}})}}</div>
             <div class="col-md-4">{{form_row(form.datenaissance,{'label':'Date de naissance'}) }}</div>
-            <a class="col-md-6">{{ form_row(form.cv,{'label':'Cv'}) }} </a>
-			<div class="col-md-6">{{ form_row(form.avatar,{'label':'Image'}) }}</div>
+            <div class="col-md-4">{{ form_row(form.cv,{'label':'Cv'}) }} </div>
+			<div class="col-md-4">{{ form_row(form.avatar,{'label':'Image'}) }}</div>
+            
             <div class="col-md-6">{{form_row(form.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}</div>
             <div class="col-md-6">{{form_row(form.username,{'label':'Username ','attr':{'placeholder':'Username'}})}}</div>
             <div class="col-md-6">{{form_row(form.password,{'label':'Mot de passe ','attr':{'placeholder':'Mot de passe'}})}}</div>

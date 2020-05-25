@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 //use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -132,6 +133,16 @@ class User implements UserInterface, \Serializable
      * @ORM\OneToMany(targetEntity="App\Entity\Postuler", mappedBy="user")
      */
     private $postulers;
+    
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        
+        $this->livres = new ArrayCollection();
+        $this->postulers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -251,18 +262,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        $this->formation = new ArrayCollection();
-        $this->experiences = new ArrayCollection();
-        $this->langues = new ArrayCollection();
-        $this->livres = new ArrayCollection();
-        $this->postulers = new ArrayCollection();
-    }
-
     public function getCivility(): ?string
     {
         return $this->civility;
@@ -350,7 +349,7 @@ class User implements UserInterface, \Serializable
         return $this->avatar;
     }
 
-    public function setAvatar($avatar)
+    public function setAvatar( $avatar)
     {
         $this->avatar = $avatar;
 
@@ -464,6 +463,5 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
-
 
 }

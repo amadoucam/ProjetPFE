@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Validator\Constraints\File;
 
 class RegistrationType extends AbstractType
@@ -20,7 +22,7 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class)
             ->add('username')
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)
@@ -55,7 +57,7 @@ class RegistrationType extends AbstractType
                         'mimeTypesMessage' => 'Veuillez charger un fichier PDF valide',
                     ])
                 ],
-            ])
+            ])  
             ->add('level', TextType::class)
         ;
     }

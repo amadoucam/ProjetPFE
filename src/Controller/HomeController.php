@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
 
 class HomeController extends AbstractController
@@ -112,17 +113,21 @@ class HomeController extends AbstractController
     /**
      * @Route("/offres/{id}", name="offres_annonce_show")
      */
-    public function show(Offre $offres, Request $request,$id, EntityManagerInterface $manager, \Swift_Mailer $mailer) 
+    public function show(Offre $offres, Request $request, $id, EntityManagerInterface $manager, \Swift_Mailer $mailer)
     {
         
          $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-            $repository =$this->getDoctrine()->getManager()->getRepository(user::class);
-            $user = $repository->find($id);
+            $repo =$this->getDoctrine()->getManager()->getRepository(user::class);
+            //$repo = $this->getDoctrine()->getManager()->getRepository(offre::class);
+            $user = $repo->find($id);
+            //$offre = $repo->find($id);
 
         $postuler = new Postuler();
         $form = $this->createForm(PostulerType::class, $postuler);
         $form->handleRequest($request);
         $postuler->setUser($user);
+        //$postuler->setOffre($offre);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
             $manager = $this->getDoctrine()->getManager();
@@ -152,6 +157,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/show.html.twig', [
             'user' => $user,
+            //'offre' => $offre,
             'offres' => $offres,
             'formPostuler' => $form->createView(),
         ]);
