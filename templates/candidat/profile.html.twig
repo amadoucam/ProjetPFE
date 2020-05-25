@@ -49,16 +49,12 @@
 <br>
 <br>
         <h2 style="text-align:center">Votre profile</h2>
-        {% for flash_message in app.session.flashbag.get('success') %}
-            <div class="container alert alert-success" role="alert">
-                {{ flash_message }}
-            </div>
-        {% endfor %}
+        {% include "flash_messages.html.twig" %}
 
         <div class="cardProfil">
             <img src="{{ asset('images/' ~ app.user.avatar)}}" alt="John" style="width:100%">
             <h1>{{ app.user.nom }} {{ app.user.prenom }} </h1>
-            {#app.user.specialite.titre  class="title"#}<p class="title">{{ app.user.level }}</p>
+            <p class="title">{{ app.user.level }}</p>
             <p>{{app.user.nationalite}}</p>
             <div style="margin: 24px 0;">
                 <p>{{ app.user.datenaissance |date('d/m/Y') }}</p>

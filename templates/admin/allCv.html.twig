@@ -54,7 +54,8 @@
         <td>{{con.prenom}}</td>
         <td>{{con.email}}</td>
         <td>{{con.level}}</td>
-        <td>  <a href="{{ asset('livre/' ~ app.user.cv) }}" target="_blank">Afficher cv</a></td>
+        <td>  <a href="{{ asset('livre/' ~ con.cv) }}" target="_blank">Afficher cv</a></td>
+        {#<td>  <a href="{{ asset('livre/' ~ app.user.cv) }}" target="_blank">Afficher cv</a></td>#}
     </tr>
 
   {% endfor %}
@@ -71,7 +72,7 @@
     </tr> #}
     </tfoot>
 </table>
-    </div><br/><br/>
+    </div><br/>
     {% endif %}
-
+  
 {% endblock %}

@@ -125,9 +125,6 @@ class SecurityController extends AbstractController
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
-        if($error){
-           echo 'Email ou Mot de passe incorrect';
-        }
  
         $lastUsername = $authenticationUtils->getLastUsername();
 

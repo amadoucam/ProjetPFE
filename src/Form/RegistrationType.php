@@ -56,21 +56,7 @@ class RegistrationType extends AbstractType
                     ])
                 ],
             ])
-            ->add('level', ChoiceType::class, [
-                'choices' => [
-                    '-- exple: bac +1' => '',
-                    'Ingenieur' => 'ingenieur',
-                    'Secondaire' => 'secondaire',
-                    'Formations professionnelles' => 'formation professionnelle',
-                    'Bac' => 'bac',
-                    'Bac +1' => 'bac +1',
-                    'Bac +2' => 'bac +2',
-                    'Bac +3' => 'bac +3',
-                    'Bac +4' => 'bac +4',
-                    'Bac +5' => 'bac +5',
-                    'Doctorat' => 'doctorat'
-                ]
-            ])
+            ->add('level', TextType::class)
         ;
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -50,6 +52,16 @@ class Offre
      * @ORM\ManyToOne(targetEntity="App\Entity\Recruteur", inversedBy="offres")
      */
     private $recruteur;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Postuler", mappedBy="offre")
+     */
+    private $postulers;
+
+    public function __construct()
+    {
+        $this->postulers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -132,4 +144,36 @@ class Offre
     {
         return $this->title;
     }
+
+    /**
+     * @return Collection|Postuler[]
+     */
+    public function getPostulers(): Collection
+    {
+        return $this->postulers;
+    }
+
+    public function addPostuler(Postuler $postuler): self
+    {
+        if (!$this->postulers->contains($postuler)) {
+            $this->postulers[] = $postuler;
+            $postuler->setOffre($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostuler(Postuler $postuler): self
+    {
+        if ($this->postulers->contains($postuler)) {
+            $this->postulers->removeElement($postuler);
+            // set the owning side to null (unless already changed)
+            if ($postuler->getOffre() === $this) {
+                $postuler->setOffre(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

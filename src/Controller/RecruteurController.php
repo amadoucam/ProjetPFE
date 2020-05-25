@@ -70,6 +70,7 @@ class RecruteurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Vous avez bien modifier vos informations.');
             return $this->redirectToRoute('profil_index');
         }
 

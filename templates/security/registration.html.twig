@@ -37,7 +37,7 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">Candidat</h3>
+                                <h1 class="register-heading">Candidat</h1>
                                 <div class="row register-form">
                                     {{ form_start(form) }}
                                     <div class="form-row">
@@ -48,8 +48,8 @@
             <div class="col-md-4">{{form_row(form.adresse,{'label':'Adresse','attr':{'placeholder':'Adresse'}})}}</div>
             <div class="col-md-4">{{form_row(form.tel,{'label':'N° Tel','attr':{'placeholder':'exp: +21656369119'}})}}</div>
 
-            <div class="col-md-4">{{form_row(form.level,{'label':'Niveau études'}) }}</div>
-            <div class="col-md-4">{{form_row(form.postal_code,{'lable':'Code postal' })}}</div>
+            <div class="col-md-4">{{form_row(form.level,{'label':'Niveau études','attr':{'placeholder':'exp: Bac, Licence...'}})}}</div>
+            <div class="col-md-4">{{form_row(form.postal_code,{'lable':'Code postal','attr':{'placeholder':'exp: 1000'}})}}</div>
             <div class="col-md-4">{{form_row(form.datenaissance,{'label':'Date de naissance'}) }}</div>
             <a class="col-md-6">{{ form_row(form.cv,{'label':'Cv'}) }} </a>
 			<div class="col-md-6">{{ form_row(form.avatar,{'label':'Image'}) }}</div>
@@ -75,5 +75,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 {% endblock %}

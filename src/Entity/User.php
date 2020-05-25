@@ -128,6 +128,11 @@ class User implements UserInterface, \Serializable
      */
     private $tel;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Postuler", mappedBy="user")
+     */
+    private $postulers;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -255,6 +260,7 @@ class User implements UserInterface, \Serializable
         $this->experiences = new ArrayCollection();
         $this->langues = new ArrayCollection();
         $this->livres = new ArrayCollection();
+        $this->postulers = new ArrayCollection();
     }
 
     public function getCivility(): ?string
@@ -311,6 +317,7 @@ class User implements UserInterface, \Serializable
             $this->civility,
             $this->tel,
             $this->level,
+            $this->cv,
 
         ));
     }
@@ -333,6 +340,7 @@ class User implements UserInterface, \Serializable
             $this->civility,
             $this->tel,
             $this->level,
+            $this->cv,
 
         ) = unserialize($serialized); 
     }
@@ -422,6 +430,37 @@ class User implements UserInterface, \Serializable
     public function setAvatarFile(File $avatarFile = null)
     {
         $this->avatarFile = $avatarFile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Postuler[]
+     */
+    public function getPostulers(): Collection
+    {
+        return $this->postulers;
+    }
+
+    public function addPostuler(Postuler $postuler): self
+    {
+        if (!$this->postulers->contains($postuler)) {
+            $this->postulers[] = $postuler;
+            $postuler->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostuler(Postuler $postuler): self
+    {
+        if ($this->postulers->contains($postuler)) {
+            $this->postulers->removeElement($postuler);
+            // set the owning side to null (unless already changed)
+            if ($postuler->getUser() === $this) {
+                $postuler->setUser(null);
+            }
+        }
 
         return $this;
     }

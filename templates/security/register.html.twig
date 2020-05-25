@@ -25,37 +25,34 @@
                     </div>
                     <div class="col-md-9 register-right">
                         <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-
                         
                             <li class="nav-item">
                                 <a href="{{ path('security_registration') }}" role="tab" aria-controls="profile" aria-selected="true">Candidat</a>
-                                
                             </li>
                             <li class="nav-item">
                                 <a href="{{ path('app_register') }}" class="nav-link active" id="home-tab" role="tab" aria-controls="profile" aria-selected="true">Recruteur</a>
-                                
                             </li>
                         </ul>
 
 <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">Recruteur</h3>
+                                <h1 class="register-heading">Recruteur</h1>
                                 <div class="row register-form">
                                     {{ form_start(registrationForm) }}
                                 <div class="form-row">
-            <div class="col-md-4">{{form_row(registrationForm.nom_entreprise,{'label':'Nom ','attr':{'placeholder':'Nom'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.nom_entreprise,{'label':'Nom ','attr':{'placeholder':'Nom Entreprise'}})}}</div>
             <div class="col-md-4">{{form_row(registrationForm.secteur_activite,{'label':'Prenom ','attr':{'placeholder':'Prenom','class': 'tst'}})}}</div>
             <div class="col-md-4">{{form_row(registrationForm.civility) }}</div>
             <div class="col-md-4">{{form_row(registrationForm.pays,{'label':'Nationalite','attr':{'placeholder':'Nationalite'}})}}</div>
-            <div class="col-md-4">{{form_row(registrationForm.ville,{'label':'Adresse','attr':{'placeholder':'Adresse'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.ville,{'label':'Ville','attr':{'placeholder':'Ville'}})}}</div>
             <div class="col-md-4">{{form_row(registrationForm.phone,{'label':'N° Tel','attr':{'placeholder':'exp: +21656369119'}})}}</div>
 
-            <div class="col-md-4">{{form_row(registrationForm.description,{'label':'Niveau études'}) }}</div>
-            <div class="col-md-4">{{form_row(registrationForm.adresse,{'lable':'Code postal' })}}</div>
-            <div class="col-md-4">{{form_row(registrationForm.code_postal,{'label':'Date de naissance'}) }}</div>
-            <div class="col-md-4">{{ form_row(registrationForm.email,{'label':'Cv'}) }}</div>
-			<div class="col-md-4">{{ form_row(registrationForm.password,{'label':'Image'}) }}</div>
-            <div class="">{{ form_row(registrationForm.confirm_password,{'label':'Image'}) }}</div>
+            <div class="col-md-4">{{form_row(registrationForm.description,{'label':'Description','attr':{'placeholder':' description de l\'entreprise ...'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.adresse,{'lable':'Adresse','attr':{'placeholder':' détail adresse ...'}})}}</div>
+            <div class="col-md-4">{{form_row(registrationForm.code_postal,{'label':'Code Postal','attr':{'placeholder':'exp: 8100'}})}}</div>
+            <div class="col-md-4">{{ form_row(registrationForm.email,{'label':'Email','attr':{'placeholder':' abc@gmail.com'}})}}</div>
+			<div class="col-md-4">{{ form_row(registrationForm.password,{'label':'Mot de passe','attr':{'placeholder':' mot de passe'}})}}</div>
+            <div class="">{{ form_row(registrationForm.confirm_password,{'label':'Confirmer mot de passe','attr':{'placeholder':' confimer mot de passe'}})}}</div>
             
 	                           </div>       
                                         <button type="submit" class="btn btn-info">Connexion</button>
@@ -75,5 +72,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 {% endblock %}

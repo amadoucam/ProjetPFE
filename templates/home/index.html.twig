@@ -18,21 +18,11 @@
         <div class="content">
             <img src="{{ offre.image }}" alt="">
              {{ offre.content | raw }}
-            <a href="{{ path('offres_annonce_show', {'id': offre.id}) }}" class="btn btn-primary">Lire la suite</a>
+            <a href="{{ path('offres_annonce_show', {'id': offre.id}) }}" class="btn btn-info">Lire la suite</a>
         </div>
       </article><br/>
     {% endfor %}
-    <h6 align = "center">{{ knp_pagination_render(offres) }}</h6> 
-    
-    <nav aria-label="Page navigation example">
-    <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
+    <div class="pagination" align = "center">{{ knp_pagination_render(offres) }}</div> 
     
 
 </div><br/><br/>

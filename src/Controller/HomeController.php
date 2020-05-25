@@ -2,6 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+
+use App\Repository\UserRepository;
+use App\Entity\Postuler;
+use App\Form\PostulerType;
+use App\Repository\PostulerRepository;
 use App\Entity\Recruteur;
 use App\Entity\Offre;
 use App\Form\OffreType;
@@ -30,7 +36,7 @@ class HomeController extends AbstractController
     {
         //$repo = $this->getDoctrine()->getRepository(Offre::class);
         //$offres = $repo->findAll();
-        $donnees = $this->getDoctrine()->getRepository(Offre::class)->findBy([],['createdAt' => 'asc']);
+        $donnees = $this->getDoctrine()->getRepository(Offre::class)->findBy([],['createdAt' => 'desc']);
 
         $offres = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos articles)
@@ -106,13 +112,50 @@ class HomeController extends AbstractController
     /**
      * @Route("/offres/{id}", name="offres_annonce_show")
      */
-    public function show(Offre $offres) {
+    public function show(Offre $offres, Request $request,$id, EntityManagerInterface $manager, \Swift_Mailer $mailer) 
+    {
+        
+         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+            $repository =$this->getDoctrine()->getManager()->getRepository(user::class);
+            $user = $repository->find($id);
+
+        $postuler = new Postuler();
+        $form = $this->createForm(PostulerType::class, $postuler);
+        $form->handleRequest($request);
+        $postuler->setUser($user);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contactFormData = $form->getData();
+            $manager = $this->getDoctrine()->getManager();
+            
+            $manager->persist($postuler);
+            $manager->flush();
+            
+
+            $message = (new \Swift_Message('Nouveau compte'))
+                // On attribue l'expéditeur
+                ->setFrom('camaraamadou775@gmail.com')
+                // On attribue le destinataire
+                ->setTo($contactFormData->getEmail())
+                // On crée le texte avec la vue
+                ->setBody(
+                    $contactFormData->getUser(),
+                    'text/html'
+                )
+            ;
+
+            $mailer->send($message);
+
+            $this->addFlash('success', 'Votre message à été Envoyez avec succes!');
+            return $this->redirectToRoute('home');
+        
+        }
 
         return $this->render('home/show.html.twig', [
-            'offres' => $offres
+            'user' => $user,
+            'offres' => $offres,
+            'formPostuler' => $form->createView(),
         ]);
     }
-
-    
+   
 
 }

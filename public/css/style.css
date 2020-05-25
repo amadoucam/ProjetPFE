@@ -1,0 +1,8 @@
+
+body .form-control{
+    border-radius:1rem;
+}
+
+button {
+    border-radius:2rem;
+}
