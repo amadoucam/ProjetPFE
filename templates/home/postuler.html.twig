@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Postuler {% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    
+
+    {% if is_granted('ROLE_USER') %} {#{{ form(formPostuler) }}#}
+       {# <a class="btn btn-info" href="{{ path('offres_annonce_postulation', {'id': app.user.id}) }}">Postuler pour L'Offre</a> <br/>#}
+        
+       {#} <h1>Pour postuler veuillez écrire le meme email de votre compte</h1>#}
+           
+          {{ form_start(formPostuler) }}
+          <div class="row">
+            <div class="col-sm-4"> {{ form_row(formPostuler.firstname) }}</div>
+            <div class="col-sm-4">{{ form_row(formPostuler.lastname) }}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"> {{ form_row(formPostuler.phone) }}</div>
+            <div class="col-sm-4">{{ form_row(formPostuler.email) }}</div>
+          </div>
+         
+            <button type="submit" class="btn btn-info">Postuler</button>
+         
+          {{ form_end(formPostuler) }}
+     
+        
+    {% endif %}   
+    
+</div><br/><br/>
+
+{% endblock %}

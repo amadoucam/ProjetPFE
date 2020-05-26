@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-
+use App\Form\RegistrationType;
 use App\Repository\UserRepository;
 use App\Entity\Postuler;
 use App\Form\PostulerType;
@@ -17,7 +17,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
 
 class HomeController extends AbstractController
@@ -113,20 +112,34 @@ class HomeController extends AbstractController
     /**
      * @Route("/offres/{id}", name="offres_annonce_show")
      */
-    public function show(Offre $offres, Request $request, $id, EntityManagerInterface $manager, \Swift_Mailer $mailer)
+    public function show(Offre $offres, $id, Request $request, EntityManagerInterface $manager, \Swift_Mailer $mailer) 
     {
+
+        return $this->render('home/show.html.twig', [
+            
+            'offres' => $offres,
+        ]);
+    }
+
+    
+    /**
+     * @Route("/offres/postuler/{user}/offre/{offres}", name="offres_annonce_postulation")
+     */
+    public function postuler(Offre $offres, User $user, Request $request, EntityManagerInterface $manager, \Swift_Mailer $mailer) 
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         
-         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-            $repo =$this->getDoctrine()->getManager()->getRepository(user::class);
-            //$repo = $this->getDoctrine()->getManager()->getRepository(offre::class);
-            $user = $repo->find($id);
-            //$offre = $repo->find($id);
+            $repository =$this->getDoctrine()->getManager()->getRepository(user::class);
+            $user=$repository->find($user);
+            $repo = $this->getDoctrine()->getManager()->getRepository(offre::class);
+            $offre = $repo->find($offres);
 
         $postuler = new Postuler();
         $form = $this->createForm(PostulerType::class, $postuler);
         $form->handleRequest($request);
         $postuler->setUser($user);
-        //$postuler->setOffre($offre);
+         $postuler->setOffre($offre);
+       
 
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
@@ -151,14 +164,15 @@ class HomeController extends AbstractController
             $mailer->send($message);
 
             $this->addFlash('success', 'Votre message à été Envoyez avec succes!');
-            return $this->redirectToRoute('home');
+            //return $this->redirectToRoute('home');
+            return $this->redirectToRoute('profile');
         
         }
 
-        return $this->render('home/show.html.twig', [
+        return $this->render('home/postuler.html.twig', [
             'user' => $user,
-            //'offre' => $offre,
-            'offres' => $offres,
+            'offre' => $offre,
+        
             'formPostuler' => $form->createView(),
         ]);
     }

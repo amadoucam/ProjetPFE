@@ -8,9 +8,28 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+# form.vars.submitted
+$('#contactForm').click(e => {
+e.preventDefault()
+$('#contactForm').slideDown();
+$('#contactForm').slideUp(); })
 
+ composer require symfony/webpack-encore-bundle
+ yarn install 
+ npm run build
+ npm run dev-server   
+ yarn add jquery
+ composer require symfony/webpack-encore-bundle
+#
 ###> symfony/phpunit-bridge ###
 .phpunit
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###

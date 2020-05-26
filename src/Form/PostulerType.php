@@ -20,7 +20,7 @@ class PostulerType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('email', EmailType::class)
             ->add('phone', NumberType::class)
-            ->add('save', SubmitType::class)
+            //->add('save', SubmitType::class)
             //->add('user')
         ;
     }

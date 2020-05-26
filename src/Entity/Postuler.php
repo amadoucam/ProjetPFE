@@ -51,6 +51,7 @@ class Postuler
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="postulers")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
@@ -135,5 +136,7 @@ class Postuler
 
         return $this;
     }
+
+   
 
 }
