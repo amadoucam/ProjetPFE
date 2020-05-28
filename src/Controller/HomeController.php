@@ -6,6 +6,12 @@ use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
 use App\Entity\Postuler;
+use App\Entity\PropertySearch;
+use App\Form\PropertySearchType;
+use App\Entity\CategorySearch;
+use App\Form\CategorySearchType;
+use App\Entity\Categorie;
+
 use App\Form\PostulerType;
 use App\Repository\PostulerRepository;
 use App\Entity\Recruteur;
@@ -27,6 +33,60 @@ class HomeController extends AbstractController
     public function accueil(Request $request)
     {
         return $this->render('home.html.twig');
+    }
+
+    /**
+     * @Route("/recherche", name="offres_recherche")
+     */
+    public function search(Request $request)
+    {
+        
+        $propertySearch = new PropertySearch();
+        $form = $this->createForm(PropertySearchType::class, $propertySearch);
+        $form->handleRequest($request);
+
+        $offres = [];
+        if($form->isSubmitted() && $form->isValid()) {
+           
+            $title = $propertySearch->getTitle();
+            if($title != ""){    //&& $content != ""
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['title' => $title]);
+            }else 
+            { 
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findAll();
+            } 
+        }
+        return $this->render('home/recherche.html.twig', [
+            'form' => $form->createView(),
+            'offres' => $offres
+        ]);
+    }
+
+    /**
+     * @Route("/cherches", name="recherches")
+     */
+    public function searchs(OffreRepository $offreRepository,Request $request): Response
+    {
+
+        $categorySearch = new CategorySearch();
+        $form = $this->createForm(CategorySearchType::class, $categorySearch);
+        $form->handleRequest($request);
+
+        $offreRepository = [];
+        if($form->isSubmitted() && $form->isValid()) {
+            $categorie_id = $categorySearch->getTitle();
+            if($categorie_id != ""){
+                
+                $offreRepository = $this->getDoctrine()->getRepository(Offre::class)->findBy(['categorie_id' => $categorie_id]);
+            }else 
+            { 
+                $offreRepository = $this->getDoctrine()->getRepository(Offre::class)->findAll();
+            } 
+        }
+        return $this->render('home/search.html.twig', [
+            'form' => $form->createView(),
+            'offres' => $offreRepository->findAll()
+        ]);
     }
 
     /**

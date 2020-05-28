@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
                 // On crée le texte avec la vue
                 ->setBody(
                     $this->renderView(
-                        'emails/activation.html.twig', ['token' => $recruteur->getActivationToken()]
+                        'emails/recruteur/activation.html.twig', ['token' => $recruteur->getActivationToken()]
                     ),
                     'text/html'
                 )
@@ -73,9 +73,9 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/activation/{token}", name="activer")
+     * @Route("/activer/{token}", name="activer")
      */
-    public function activation($token, RecruteurRepository $recruteur)
+    public function activer($token, RecruteurRepository $recruteur)
     {
         // On recherche si un utilisateur avec ce token existe dans la base de données
         $recruteur = $recruteur->findOneBy(['activation_token' => $token]);
@@ -93,16 +93,16 @@ class RegistrationController extends AbstractController
         $manager->flush();
 
         // On génère un message
-        $this->addFlash('message', 'Utilisateur activé vous pouvez vous connecter!');
+        $this->addFlash('success', 'Utilisateur activé vous pouvez vous connecter!');
 
         // On retourne à l'accueil /home
         return $this->redirectToRoute('home');
     }
 
     /**
-     * @Route("/pass-oubli", name="app_reset_passworde")
+     * @Route("/oubli-pass", name="recruteur_app_password")
      */
-    public function resetPassword (Request $request, RecruteurRepository $recruRepo, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $manager)
+    public function resetPassword (Request $request, RecruteurRepository $userRepo, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $manager)
     {
         $form = $this->createForm(ResetPassType2::class);
 
@@ -110,20 +110,20 @@ class RegistrationController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
             //recuperation des données
-            $donnee = $form->getData();
+            $donnees = $form->getData();
             //si un utilisateur à cette email
-            $recruteur = $recruRepo->findOneByEmail($donnee['email']);
+            $user = $userRepo->findOneByEmail($donnees['email']);
             //si l'utilisateur n'existe pas
-            if(!$recruteur) {
-                $this->addFlash('danger', 'Cette adresse mail n\'existe pas');
+            if(!$user) {
+                $this->addFlash('danger', 'Cette adresse n\'existe pas');
 
                 return $this->redirectToRoute('security_login');
             }
             $token = $tokenGenerator->generateToken();
 
             try {
-                $recruteur->setResetToken($token);
-                $manager->persist($recruteur);
+                $user->setResetToken($token);
+                $manager->persist($user);
                 $manager->flush();
             }
             catch (\Exception $e) {
@@ -132,34 +132,35 @@ class RegistrationController extends AbstractController
             }
 
             //url de réinitialisation de mot de passe
-            $url = $this->generateUrl('app_passworde', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
+            $url = $this->generateUrl('password_app', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
             $message = (new \Swift_Message('Nouveau compte'))
                 // On attribue l'expéditeur
-                ->setFrom('camaraamadou@gmail.com')
+                ->setFrom('camaraamadou775@gmail.com')
                 // On attribue le destinataire
-                ->setTo($recruteur->getEmail())
+                ->setTo($user->getEmail())
                 // On crée le texte avec la vue
                 ->setBody(
-                    "<p>Salut, </p><p>Une demande de réinitialisation de mot de passe a été effectuée pour le
-                            site Emplois. Veuillez cliquer sur le lien suivant : " .'<a>' . $url . '</a>' . "</p>",
+                    "<p>Salut,</p>Une demande de réinitialisation de mot de passe a été effectuée pour le
+                                   site Emplois. Veuillez cliquer sur le lien suivant :<p>
+                                    <p> <a>$url</a></p>",
                     'text/html'
                 )
             ;
             //envoie email
             $mailer->send($message);
 
-            $this->addFlash('message', 'Un e-mail de réinitialisation de mot de passe vous a été envoyé');
+            $this->addFlash('success', 'Un e-mail de réinitialisation de mot de passe vous a été envoyé');
             return $this->redirectToRoute('security_login');
         }
         //on envoie vers la page de demande de l'é-mail
-        return $this->render('emails/resete_password.html.twig', ['form' => $form->createView()]);
+        return $this->render('emails/recruteur/resete_password.html.twig', ['emailForm' => $form->createView()]);
     }
 
     /**
-     * @Route("/pass-oubli/{token}", name="app_passworde")
+     * @Route("/oubli-pass/{token}", name="password_app")
      */
-    public function newPassword(Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder)
+    public function passwordNew(Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder)
     {
         // On cherche un utilisateur avec le token donné
         $recruteur = $this->getDoctrine()->getRepository(Recruteur::class)->findOneBy(['reset_token' => $token]);
@@ -185,13 +186,13 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // On crée le message flash
-            $this->addFlash('message', 'Mot de passe modifier avec succès');
+            $this->addFlash('success', 'Mot de passe modifier avec succès');
 
             // On redirige vers la page de connexion
             return $this->redirectToRoute('security_login');
         }else {
             // Si on n'a pas reçu les données, on affiche le formulaire
-            return $this->render('emails/new_pass.html.twig', ['token' => $token]);
+            return $this->render('emails/recruteur/new_pass.html.twig', ['token' => $token]);
         }
 
     }

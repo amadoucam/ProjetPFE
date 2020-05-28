@@ -24,9 +24,8 @@
     {% endif %}
 
     {% if is_granted('ROLE_USER') %}  
-        <a class="btn btn-info" href="{{ path('offres_annonce_postulation', {'user': app.user.id, 'offres': offres.id}) }}" id="contactButton">Postuler pour L'Offre</a> <br/>     
-        
-    {% endif %}   
+        <a class="btn btn-info" href="{{ path('offres_annonce_postulation', {'user': app.user.id, 'offres': offres.id}) }}" id="contactButton">Postuler pour L'Offre</a> <br/>      
+    {% endif %}  
     
 </div><br/><br/>
 

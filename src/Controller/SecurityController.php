@@ -36,7 +36,7 @@ class SecurityController extends AbstractController
         $spe = $repository->findAll();
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
-        $form->handleRequest($request);
+        $form->handleRequest($request);  
         if($form->isSubmitted() && $form->isValid()){
 
         $file = $user->getAvatar();
@@ -70,8 +70,6 @@ class SecurityController extends AbstractController
                     // ... handle exception if something happens during file upload
                 }
 
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
                 $user->setCv($newFilename); 
                 }
 
@@ -197,7 +195,7 @@ class SecurityController extends AbstractController
         $manager->flush();
 
         // On génère un message
-        $this->addFlash('message', 'Utilisateur activé vous pouvez vous connecter!');
+        $this->addFlash('success', 'Utilisateur activé avec succès');
 
         // On retourne à l'accueil /home
         return $this->redirectToRoute('home');
@@ -219,7 +217,7 @@ class SecurityController extends AbstractController
             $user = $userRepo->findOneByEmail($donnees['email']);
             //si l'utilisateur n'existe pas
             if(!$user) {
-                $this->addFlash('danger', 'Cette adresse mail n\'existe pas');
+                $this->addFlash('danger', 'Cette adresse n\'existe pas');
 
                 return $this->redirectToRoute('security_login');
             }
@@ -240,24 +238,25 @@ class SecurityController extends AbstractController
 
             $message = (new \Swift_Message('Nouveau compte'))
                 // On attribue l'expéditeur
-                ->setFrom('camaraamadou@gmail.com')
+                ->setFrom('camaraamadou775@gmail.com')
                 // On attribue le destinataire
                 ->setTo($user->getEmail())
                 // On crée le texte avec la vue
                 ->setBody(
-                    "<p>Salut, </p><p>Une demande de réinitialisation de mot de passe a été effectuée pour le
-                            site Emplois. Veuillez cliquer sur le lien suivant : " .'<a>' . $url . '</a>' . "</p>",
+                    "<p>Salut,</p>Une demande de réinitialisation de mot de passe a été effectuée pour le
+                                   site Emplois. Veuillez cliquer sur le lien suivant :<p>
+                                    <p> <a>$url</a></p>",
                     'text/html'
                 )
             ;
             //envoie email
             $mailer->send($message);
 
-            $this->addFlash('message', 'Un e-mail de réinitialisation de mot de passe vous a été envoyé');
+            $this->addFlash('success', 'Un e-mail de réinitialisation de mot de passe vous a été envoyé');
             return $this->redirectToRoute('security_login');
         }
         //on envoie vers la page de demande de l'é-mail
-        return $this->render('emails/reset_password.html.twig', ['emailForm' => $form->createView()]);
+        return $this->render('emails/reset_password.html.twig', ['formEmail' => $form->createView()]);
     }
 
     /**
@@ -289,7 +288,7 @@ class SecurityController extends AbstractController
             $entityManager->flush();
 
             // On crée le message flash
-            $this->addFlash('message', 'Mot de passe modifier avec succès');
+            $this->addFlash('success', 'Mot de passe modifier avec succès');
 
             // On redirige vers la page de connexion
             return $this->redirectToRoute('security_login');

@@ -1,0 +1,5 @@
+label_next: suivant
+label_previous: précédent
+
+Login.error: "Email ou Mot de passe incorrecte."
+messageData: "Email ou Mot de passe incorrecte."

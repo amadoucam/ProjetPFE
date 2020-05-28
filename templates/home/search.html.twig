@@ -6,19 +6,29 @@
 <br/>
 <br/>
 <br/>
-<br/>
+
 <div class="container">
-    <h1>Offre index</h1>
+    <h1 align = "center">Recherche votre Offre d'emploi</h1>
+    {{ form_start(form) }}
+<div class="form-rowalign-items-end">
+  <div class="col">
+     {{ form_row(form.title) }}
+  </div>
+  <div class="col">
+   <div class="form-group">
+     <button type="submit" class="btn btn-info">Rechercher</button>
+   </div>
+  </div>
+ </div>
+{{ form_end(form) }}
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Image</th>
-                <th>CreatedAt</th>
-                <th>Categorie</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Date Creation</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,23 +38,19 @@
                 <td>{{ offre.id }}</td>
                 <td>{{ offre.title }}</td>
                 <td>{{ offre.content }}</td>
-                <td>{{ offre.image }}</td>
                 <td>{{ offre.createdAt ? offre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ offre.categorie }} </td>
                 <td>
-                    <a href="{{ path('offre_show', {'id': offre.id}) }}">show</a>
-                    <a href="{{ path('offre_edit', {'id': offre.id}) }}">edit</a>
+                    <a href="{{ path('offres_annonce_show', {'id': offre.id}) }}">Afficher</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucune Offre</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-info" href="{{ path('offre_new') }}">Create new</a>
 </div><br/><br/><br/>
 
 {% endblock %}

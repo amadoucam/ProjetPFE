@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class UserType extends AbstractType
@@ -41,21 +42,7 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('tel')
-            ->add('level', ChoiceType::class, [
-                'choices' => [
-                    '-- exple: bac +1' => '',
-                    'Ingenieur' => 'ingenieur',
-                    'Secondaire' => 'secondaire',
-                    'Formations professionnelles' => 'formation professionnelle',
-                    'Bac' => 'bac',
-                    'Bac +1' => 'bac +1',
-                    'Bac +2' => 'bac +2',
-                    'Bac +3' => 'bac +3',
-                    'Bac +4' => 'bac +4',
-                    'Bac +5' => 'bac +5',
-                    'Doctorat' => 'doctorat'
-                ]
-            ])
+            ->add('level',TextType::class)
             //'data_class' => 'Symfony\Component\HttpFoundation\File\File', 'property_path' => 'picture
 
         ;

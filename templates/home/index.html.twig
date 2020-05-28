@@ -7,13 +7,13 @@
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
+
 <div class="container">
     <h1 align = "center">Les offres</h1>
+    <hr>
     {% for offre in offres %}
       <article>
-        <h2>{{ offre.title }}</h2>
+        <h2><a href="{{ path('offres_annonce_show', {'id': offre.id}) }}">{{ offre.title }}</a></h2>
         <div class="metadata">Publier le <i class="fa fa-calendar"></i>{{ offre.createdAt | date('d/m/Y')}} à {{ offre.createdAt | date('H:i') }} dans la catégorie {{ offre.categorie.title }}</div>
         <div class="content">
             <img src="{{ offre.image }}" alt="">
@@ -22,7 +22,7 @@
         </div>
       </article><br/>
     {% endfor %}
-    <div class="pagination" align = "center">{{ knp_pagination_render(offres) }}</div> 
+    <div class="pagination center">{{ knp_pagination_render(offres) }}  </div> 
     
 
 </div><br/><br/>

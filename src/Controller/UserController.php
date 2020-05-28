@@ -111,10 +111,10 @@ class UserController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('user_index');
+            $this->addFlash('danger', 'Votre compte à bien été supprimer.');
         }
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('home');
         
     }
 

@@ -12,9 +12,9 @@
 
 <div class="container">
     {% if editMode %}
-    <h1>Modifier d'une offre</h1>
+    <h1 align="center">Modifier d'une offre</h1>
     {% else %}
-    <h1>Création d'une offre</h1>
+    <h1 align="center">Création d'une offre</h1>
     {% endif %}
 
     {{ form_start(formOffre) }}
@@ -22,7 +22,7 @@
     {{ form_row(formOffre.categorie) }}
     {{ form_row(formOffre.content, {'attr': {'placeholder' : "Contenu de l'offre"}}) }}
     {{ form_row(formOffre.image, {'attr': {'placeholder' : "Image de l'offre"}}) }}
-    {{ form_row(formOffre.createdAt, {'attr': {'placeholder' : "Date Création de l'offre"}}) }}
+    {{ form_row(formOffre.createdAt, {'label' : "Date Création"}) }}
     <button type="submit" class="btn btn-info">
         {% if editMode %}
         Enregistrer

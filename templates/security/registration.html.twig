@@ -39,7 +39,7 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h1 class="register-heading">Candidat</h1>
                                 <div class="row register-form">
-                                    {{ form_start(form) }}
+                                {{ form_start(form) }}
                                     <div class="form-row">
             <div class="col-md-4">{{form_row(form.nom,{'label':'Nom ','attr':{'placeholder':'Nom'}})}}</div>
             <div class="col-md-4">{{form_row(form.prenom,{'label':'Prenom ','attr':{'placeholder':'Prenom','class': 'tst'}})}}</div>
@@ -51,8 +51,15 @@
             <div class="col-md-4">{{form_row(form.level,{'label':'Niveau études','attr':{'placeholder':'exp: Bac, Licence...'}})}}</div>
             <div class="col-md-4">{{form_row(form.postal_code,{'lable':'Code postal','attr':{'placeholder':'exp: 1000'}})}}</div>
             <div class="col-md-4">{{form_row(form.datenaissance,{'label':'Date de naissance'}) }}</div>
-            <div class="col-md-4">{{ form_row(form.cv,{'label':'Cv'}) }} </div>
-			<div class="col-md-4">{{ form_row(form.avatar,{'label':'Image'}) }}</div>
+            <div class="col-md-4"> {{ form_row(form.cv,{'label':'Cv'}) }} 
+           {# nbsp;<label>Cv</label>
+             <input type="file" id="form_cv" name="form[cv]" class="btn btn-info" value="cv" required /> #}
+            </div>
+			<div class="col-md-4">{{ form_row(form.avatar,{'label':'Image'}) }}
+          {#  <label>Image</label>
+            <input type="file" id="form_avatar" name="form[avatar]" class="btn btn-info" value="avatar" required />#}
+            </div>
+            
             
             <div class="col-md-6">{{form_row(form.email,{'label':'Email ','attr':{'placeholder':'Email'}})}}</div>
             <div class="col-md-6">{{form_row(form.username,{'label':'Username ','attr':{'placeholder':'Username'}})}}</div>
@@ -61,6 +68,7 @@
 	                               </div> 
                                    <button type="submit" class="btn btn-info">Inscription</button>
                                    {{ form_end(form)}}
+                                                                                                 
                                 </div>
                             </div>
  </div>
