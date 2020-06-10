@@ -5,7 +5,8 @@ namespace App\Entity;
 class PropertySearch
 {
 
- private $title;
+    private $title;
+       
 
  public function getTitle(): ?string
  {

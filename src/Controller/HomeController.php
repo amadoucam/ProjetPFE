@@ -32,6 +32,9 @@ class HomeController extends AbstractController
      */
     public function accueil(Request $request)
     {
+        //page d'exception NotFoundException
+        //throw $this->createAccessDeniedException('Vous ne pouvez pas accéder à cette page');
+
         return $this->render('home.html.twig');
     }
 
@@ -48,12 +51,13 @@ class HomeController extends AbstractController
         $offres = [];
         if($form->isSubmitted() && $form->isValid()) {
            
-            $title = $propertySearch->getTitle();
-            if($title != ""){    //&& $content != ""
-                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['title' => $title]);
-            }else 
-            { 
+            $tit = $propertySearch->getTitle();
+              //$cat = $propertySearch->getCategorie();
+            if($tit != ""){    
                 $offres = $this->getDoctrine()->getRepository(Offre::class)->findAll();
+            }else 
+            {      
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['title' => $tit]);
             } 
         }
         return $this->render('home/recherche.html.twig', [
@@ -65,7 +69,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/cherches", name="recherches")
      */
-    public function searchs(OffreRepository $offreRepository,Request $request): Response
+    public function searchs(OffreRepository $offreRepository, Request $request): Response
     {
 
         $categorySearch = new CategorySearch();

@@ -11,7 +11,7 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="{{ app.request.get('_route') == 'offres_recherche' ? 'active' : '' }}"><a href="{{ path('offres_recherche') }}"><i class="fa fa-search"></i>Recherche</a></li>
+          <li class="{{ app.request.get('_route') == 'offres_recherche' ? 'active' : '' }}"><a class="search-btn" href="{{ path('offres_recherche') }}"><i class="fas fa-search"></i>Recherche</a></li>
           <li class="{{ app.request.get('_route') == 'home' ? 'active' : '' }}"><a href="{{ path('home') }}"><i class="fa fa-home"></i>Home</a></li>
           {% if is_granted('ROLE_USER') %}
           <li class="{{ app.request.get('_route') == 'profile' ? 'active' : '' }}"><a href="{{ path('profile') }}">EspaceMenbre</a></li> 

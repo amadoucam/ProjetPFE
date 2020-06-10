@@ -53,6 +53,7 @@ class OffreController extends AbstractController
      */
     public function show(Offre $offre): Response
     {
+        
         return $this->render('offre/show.html.twig', [
             'offre' => $offre,
         ]);

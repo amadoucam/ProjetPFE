@@ -36,6 +36,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $username;
 
@@ -52,16 +53,19 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez écrire Nom de famille ")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez écrire votre Prenom ")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="Veuillez écrire votre Date de Naissance ")
      */
     private $datenaissance;
 
@@ -72,11 +76,13 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez mentionnez votre Adresse ")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Veuillez écrire le Code Postal ")
      */
     private $postal_code;
 
@@ -87,7 +93,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Veuillez écrire votre Niveau d'etudes ")
      */
     private $level;
 
@@ -125,6 +131,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="bigint")
+     * @Assert\NotBlank(message="Veuillez écrire le numéro de Téléphone ")
      */
     private $tel;
 

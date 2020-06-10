@@ -53,6 +53,7 @@
                                 <label class="text-info">Password <span class="text-danger">*</span></label>
 	                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" required name="_password">
                             </div>
+                
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                             <div class="form-group">
                                 <b><a href="{{ path('app_reset_password') }}">Mot de passe oublier?</a></b>
@@ -78,4 +79,11 @@
     <script src="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}
+
+{#
+<label for="_remember_me">
+                               <input type="checkbox" id="_remember_me" name="_remember_me" checked/>
+                               Se souvenir de moi!
+                            </label>
+#}
 

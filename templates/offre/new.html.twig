@@ -3,9 +3,15 @@
 {% block title %}New Offre{% endblock %}
 
 {% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
     <h1>Create new Offre</h1>
 
     {{ include('offre/_form.html.twig') }}
 
-    <a href="{{ path('offre_index') }}">back to list</a>
+    <a class="btn btn-info" href="{{ path('offre_index') }}">back to list</a>
+</div> <br/><br/>    
 {% endblock %}

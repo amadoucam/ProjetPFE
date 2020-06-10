@@ -13,6 +13,7 @@ class PropertySearchType extends AbstractType
     {
         $builder
             ->add('title')
+            //->add('categorie')
         ;
     }
 

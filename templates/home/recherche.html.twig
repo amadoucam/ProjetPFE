@@ -13,7 +13,7 @@
 <div class="form-rowalign-items-end">
   <div class="col">
      {{ form_row(form.title) }}
-   {#  {{ form_row(form.title) }} #}
+   {#}  {{ form_row(form.categorie) }} #}
   </div>
   <div class="col">
    <div class="form-group">
@@ -26,24 +26,27 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                
                 <th>Titre</th>
                 <th>Contenu</th>
                 <th>Date Creation</th>
-                <th>actions</th>
+                <th>Categorie</th>
+                <th>Voir</th>
             </tr>
         </thead>
         <tbody>
         {% for offre in offres %}
             <tr>
-                <td>{{ offre.id }}</td>
+               
                 <td>{{ offre.title }}</td>
                 <td>{{ offre.content }}</td>
                 <td>{{ offre.createdAt ? offre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ offre.categorie }}</td>
                 <td>
                     <a href="{{ path('offres_annonce_show', {'id': offre.id}) }}">Afficher</a>
                 </td>
             </tr>
+             
         {% else %}
             <tr>
                 <td colspan="6">Aucune Offre</td>

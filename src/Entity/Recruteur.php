@@ -37,11 +37,13 @@ class Recruteur implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez écrire le Secteur D'activité de L'enteprise ")
      */
     private $secteur_activite;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez écrire votre adresse ")
      */
     private $adresse;
 
@@ -52,6 +54,7 @@ class Recruteur implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez écrire votre Ville ")
      */
     private $ville;
 
@@ -72,6 +75,7 @@ class Recruteur implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email()
      */
     private $email;
 
@@ -108,6 +112,7 @@ class Recruteur implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="bigint")
+     * @Assert\NotBlank(message="Veuillez écrire le numéro de Téléphone ")
      */
     private $phone;
 

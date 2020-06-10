@@ -4,6 +4,7 @@ easy_admin:
           #- 'admin/form/custom_layout.html.twig'
       - 'form_div_layout.html.twig'
       - '@EasyAdmin/form/bootstrap_4.html.twig'
+      - '@VichUploader/Form/fields.html.twig'
     brand_color: '#67b0d1' 
     assets:
       favicon: 

@@ -33,13 +33,22 @@ security:
             #remembre_me:
                 #secret: '%secret%'    
             #http_basic: true        
-            #guard:
-                #authenticators:
-                    #- App\Security\AppAuthenticator
+            
 
             logout:
                 path: security_logout
                 target: security_login
+
+            #remember_me:
+               # secret:    '%kernel.secret%'
+                #lifetime: 31536000 # 604800  1 week in seconds # 31536000 1an
+                #path: /
+
+            #guard:
+                #authenticators:
+                    #- App\Security\AppAuthenticator    
+            
+            #https://symfony.com/doc/current/security/remember_me.html    
          
                 # where to redirect after logout
                 # target: app_any_route{guard:    authenticators:    - App\Security\AppAuthenticator   logout:    path: security_logout}
