@@ -6,6 +6,9 @@ security:
         App\Entity\Recruteur:
             algorithm: argon2i
 
+        App\Entity\Administrateur:
+            algorithm: bcrypt    
+
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -14,8 +17,9 @@ security:
             
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Administrateur
                 property: email
+     
         # used to reload user from session & other features (e.g. switch_user)
        
     firewalls:
@@ -63,9 +67,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/recruteur, roles: ROLE_ADMIN }
-         - { path: ^/user, roles: ROLE_USER }
-        # - { path: ^/admin, roles: ROLE_SUPER_ADMIN }
+         #- { path: ^/recruteur, roles: ROLE_ADMIN }
+         #- { path: ^/user, roles: ROLE_USER }
+         - { path: ^/admin,  roles: ROLE_SUPER_ADMIN }
+
+        
  
          
 

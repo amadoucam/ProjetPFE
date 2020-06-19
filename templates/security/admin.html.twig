@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription admin!{% endblock %}
+
+
+{% block body %}
+ 
+ <br/>
+ <br/>
+ <br/>
+ <div class = "container">
+    {{ form_start(form) }}
+            <div class="form-row">
+            
+            <div class="col-md-4">{{ form_row(form.email,{'label':'Email','attr':{'placeholder':' abc@gmail.com'}})}}</div>
+			<div class="col-md-4">{{ form_row(form.password,{'label':'Mot de passe','attr':{'placeholder':' mot de passe'}})}}</div>
+            <div class="">{{ form_row(form.confirm_password,{'label':'Confirmer mot de passe','attr':{'placeholder':' confimer mot de passe'}})}}</div>
+            
+	        </div>       
+            <button type="submit" class="btn btn-info">Inscription</button>
+    {{ form_end(form)}}
+ </div> <br/><br/><br/>    
+
+{% endblock %}

@@ -11,46 +11,70 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="{{ app.request.get('_route') == 'offres_recherche' ? 'active' : '' }}"><a class="search-btn" href="{{ path('offres_recherche') }}"><i class="fas fa-search"></i>Recherche</a></li>
+          {% if is_granted('ROLE_SUPER_ADMIN') %}
+          <li class="{{ app.request.get('_route') == 'offre_index' ? 'active' : '' }}"><a href="{{ path('offre_index') }}">Offre d'emploi</a></li>
+          <li class="{{ app.request.get('_route') == 'user_index' ? 'active' : '' }}"><a href="{{ path('user_index') }}">Les Candidats</a></li>
+          <li class="{{ app.request.get('_route') == 'recruteur_index' ? 'active' : '' }}"><a href="{{ path('recruteur_index') }}">Les Recruteurs</a></li>
+          {% else %}
+            <li class="{{ app.request.get('_route') == 'offres_recherche' ? 'active' : '' }}"><a class="search-btn" href="{{ path('offres_recherche') }}"><i class="fas fa-search"></i>Recherche</a></li>
+          {% endif %}
+          
           <li class="{{ app.request.get('_route') == 'home' ? 'active' : '' }}"><a href="{{ path('home') }}"><i class="fa fa-home"></i>Home</a></li>
           {% if is_granted('ROLE_USER') %}
           <li class="{{ app.request.get('_route') == 'profile' ? 'active' : '' }}"><a href="{{ path('profile') }}">EspaceMenbre</a></li> 
+          {% elseif is_granted('ROLE_SUPER_ADMIN') %}
+          <li class="{{ app.request.get('_route') == '' ? 'active' : '' }}"><a href="{{ path('easyadmin') }}">Page Administrateur</a></li> 
           {% else %}
           <li class="{{ app.request.get('_route') == 'Espace_Entreprise' ? 'active' : '' }}"><a href="{{ path('profil_index') }}">Espace_Entreprise</a></li> 
           {% endif %}
+
+
+          {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+          {% else %}
           <li class="{{ app.request.get('_route') == 'offres_annonce' ? 'active' : '' }}"><a href="{{ path('offres_annonce') }}">Offre_d'emploi</a></li>
           <li class="{{ app.request.get('_route') == 'contact' ? 'active' : '' }}"><a href="{{ path('contact') }}">Contact</a></li>
+          {% endif %}
+
+
+          
 
           {% if is_granted('ROLE_USER') %}
           <li class="drop-down"><a href="">{{ app.user.nom }} {{ app.user.prenom }}</a>
             <ul>
-              {% if app.user.email != "" %}
+              
               <li><a href="{{ path('candidat', {'id' : app.user.id }) }}">Mon Cv</a></li> 
               <li><a href="{{ path('profile')}}">Profile</a></li> 
-              {% endif %}
+              
               <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
             </ul>
           </li>
            {% elseif is_granted('ROLE_ADMIN') %}
           <li class="drop-down"><a href="">{{ app.user.email }}</a>
             <ul>
-              {% if app.user.email != "" %}
+              
               <li><a href="{{ path('profil_index')}}">Profile</a></li>
              {# <li><a href="{{ path('offres_create') }}">Creér Offre</a></li>#}
               <li><a href="{{ path('allCv') }}">CV des Candidat</a></li>
               <li><a href="{{ path('offres_create', {'id' : app.user.id }) }}">Creér Offre</a></li>
               {#<li><a href="{{ path('offres_edit', {'id': offres.id}) }}">Modifier Offre</a></li>#}
-              {% endif %}
+              
               <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
             </ul>
           </li>
           {% else %}
-          <li class="drop-down"><a href="#">Connexion</a>
+
+          {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+          {% else %}
+            <li class="drop-down"><a href="#">Connexion</a>
             <ul>
               <li><a href="{{ path('security_login')}}">Connexion</a></li>
               <li><a href="{{ path('security_registration')}}">Inscription</a></li>
             </ul>
           </li>
+          {% endif %}
+          
           {% endif %}
 
         </ul>

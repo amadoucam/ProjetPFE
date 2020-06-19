@@ -82,6 +82,7 @@ class UserController extends AbstractController
                     $newFilename
                 );
                 $user->setAvatar($newFilename);
+
             }
 
             $this->getDoctrine()->getManager()->flush();

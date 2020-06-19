@@ -19,5 +19,7 @@ easy_admin:
           - { label: 'Offres' }
           - {entity: 'Offre', icon: 'tag', label: 'Offres'}
           - {entity: 'Categorie', icon: 'inbox', label: 'Categories'} 
+          - {entity: 'Postuler', icon: 'user', label: 'Postulation'}
+          - {entity: 'Contact', icon: 'inbox', label: 'Contact'}  
           - { label: 'Page accueil' , route: 'home'}
     

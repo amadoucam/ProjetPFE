@@ -2,6 +2,12 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Entity\Recruteur;
@@ -23,6 +29,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 use Symfony\Component\HttpFoundation\File\File;
 //use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as UserPasswordEncoderInterface;
+
 
 class AdminController extends EasyAdminController
 {
