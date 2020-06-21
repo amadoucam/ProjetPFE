@@ -12,9 +12,7 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           {% if is_granted('ROLE_SUPER_ADMIN') %}
-          <li class="{{ app.request.get('_route') == 'offre_index' ? 'active' : '' }}"><a href="{{ path('offre_index') }}">Offre d'emploi</a></li>
-          <li class="{{ app.request.get('_route') == 'user_index' ? 'active' : '' }}"><a href="{{ path('user_index') }}">Les Candidats</a></li>
-          <li class="{{ app.request.get('_route') == 'recruteur_index' ? 'active' : '' }}"><a href="{{ path('recruteur_index') }}">Les Recruteurs</a></li>
+  
           {% else %}
             <li class="{{ app.request.get('_route') == 'offres_recherche' ? 'active' : '' }}"><a class="search-btn" href="{{ path('offres_recherche') }}"><i class="fas fa-search"></i>Recherche</a></li>
           {% endif %}
@@ -57,9 +55,8 @@
              {# <li><a href="{{ path('offres_create') }}">Creér Offre</a></li>#}
               <li><a href="{{ path('allCv') }}">CV des Candidat</a></li>
               <li><a href="{{ path('offres_create', {'id' : app.user.id }) }}">Creér Offre</a></li>
-              {#<li><a href="{{ path('offres_edit', {'id': offres.id}) }}">Modifier Offre</a></li>#}
               
-              <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
+              <li><a href="{{ path('security_logout') }}">Deconnexion</a></>
             </ul>
           </li>
           {% else %}

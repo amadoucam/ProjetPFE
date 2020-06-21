@@ -39,11 +39,10 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/recherche", name="offres_recherche")
+     * @Route("/recherche", name="offres_recherche", methods={"GET", "POST"})
      */
-    public function search(Request $request)
+    public function search(Request $request, OffreRepository $repo)
     {
-        
         $propertySearch = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class, $propertySearch);
         $form->handleRequest($request);
@@ -51,45 +50,19 @@ class HomeController extends AbstractController
         $offres = [];
         if($form->isSubmitted() && $form->isValid()) {
            
-            $tit = $propertySearch->getTitle();
+            $title = $propertySearch->getTitle();
               //$cat = $propertySearch->getCategorie();
-            if($tit != ""){    
+            if($title != ""){    
                 $offres = $this->getDoctrine()->getRepository(Offre::class)->findAll();
             }else 
             {      
-                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['title' => $tit]);
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['title' => $title]);
             } 
         }
+
         return $this->render('home/recherche.html.twig', [
             'form' => $form->createView(),
             'offres' => $offres
-        ]);
-    }
-
-    /**
-     * @Route("/cherches", name="recherches")
-     */
-    public function searchs(OffreRepository $offreRepository, Request $request): Response
-    {
-
-        $categorySearch = new CategorySearch();
-        $form = $this->createForm(CategorySearchType::class, $categorySearch);
-        $form->handleRequest($request);
-
-        $offreRepository = [];
-        if($form->isSubmitted() && $form->isValid()) {
-            $categorie_id = $categorySearch->getTitle();
-            if($categorie_id != ""){
-                
-                $offreRepository = $this->getDoctrine()->getRepository(Offre::class)->findBy(['categorie_id' => $categorie_id]);
-            }else 
-            { 
-                $offreRepository = $this->getDoctrine()->getRepository(Offre::class)->findAll();
-            } 
-        }
-        return $this->render('home/search.html.twig', [
-            'form' => $form->createView(),
-            'offres' => $offreRepository->findAll()
         ]);
     }
 
@@ -243,3 +216,59 @@ class HomeController extends AbstractController
    
 
 }
+
+
+
+/*
+
+
+        return $this->render('home/recherche.html.twig', [
+            'form' => $form->createView(),
+            'offres' => $offres
+        ]);
+
+*/
+
+/*
+
+public function search(Request $request, OffreRepository $repo,PaginatorInterface $paginator, EntityManagerInterface $em)
+    {
+        
+        $propertySearch = new PropertySearch();
+        $form = $this->createForm(PropertySearchType::class, $propertySearch);
+        $form->handleRequest($request);
+
+        //$offres = [];
+
+        $offres = $repo->findAll();
+ 
+        if ($form->isSubmitted() && $form->isValid()) {
+ 
+            $title = $form->getData()->getTitle();
+
+            $offres = $repo->search($title);
+
+
+            if ($offres == null) {
+                $this->addFlash('erreur', 'Aucune Offre contenant ce mot clé dans le titre n\'a été trouvé, essayez en un autre.');
+           
+            }
+
+    }
+
+     // Paginate the results of the query
+     $offres = $paginator->paginate(
+        // Doctrine Query, not results
+        $offres,
+        // Define the page parameter
+        $request->query->getInt('page', 1),
+        // Items per page
+        4
+    );
+        return $this->render('home/recherche.html.twig', [
+            'form' => $form->createView(),
+            'offres' => $offres
+        ]);
+    }
+
+*/

@@ -98,4 +98,9 @@ class Administrateur implements UserInterface
         return ['ROLE_SUPER_ADMIN'];
     }
 
+    public function __toString()
+    {
+        return $this->email;
+    }
+
 }

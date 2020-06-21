@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bridge\Doctrine\Form\Type\DateTimeType;
 
 class OffreType extends AbstractType
 {
@@ -22,7 +23,9 @@ class OffreType extends AbstractType
             ])
             ->add('content')
             ->add('image')
-            ->add('createdAt')
+            ->add('createdAt', DateTimeType::class, [
+                'widget' => 'single_text',
+            ])
         ;
     }
 
