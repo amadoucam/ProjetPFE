@@ -34,6 +34,21 @@ class UserType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
+            ->add('cv', FileType::class, [
+                'label' => 'Document (PDF file)',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '500000k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez charger un fichier PDF valide',
+                    ])
+                ],
+            ]) 
            
             //'data_class' => null,
             ->add('postal_code')

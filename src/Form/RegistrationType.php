@@ -23,11 +23,11 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('username')
+            ->add('username', TextType::class)
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)
-            ->add('nom')
-            ->add('prenom')
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
             ->add('civility', ChoiceType::class,[
                 'choices' => [
                     'monsieur' => 'monsieur',
@@ -40,7 +40,7 @@ class RegistrationType extends AbstractType
             ])
             ->add('nationalite', CountryType::class)
             ->add('postal_code', NumberType::class)
-            ->add('adresse')
+            ->add('adresse', TextType::class)
             ->add('tel')
             ->add('avatar', FileType::class)
             ->add('cv', FileType::class, [

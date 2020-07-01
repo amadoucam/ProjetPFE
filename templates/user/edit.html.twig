@@ -36,7 +36,9 @@
     <div class="col">
         {{form_row(form.avatar,{'label':'Mise à jour de votre Image'})}}
     </div>
-    
+    <div class="col">
+        {{form_row(form.cv,{'label':'Mise à jour de votre Cv'})}}
+    </div>
 
     <div class="row">
     <div class="col-sm-6">
@@ -65,14 +67,10 @@
 
        </div>
 
-        <button class="btn btn-lg btn-info btn-block" type="submit">Update</button><br/>
-
-        
+        <button class="btn btn-lg btn-info btn-block" type="submit">Update</button><br/><br/>  
     
         {{ form_end(form)}}
-        <div class="form-group col-md-12">
-            <a href="{{ path('user_change_password') }}" class="btn btn-primary">changer mot de passe</a>
-        </div>
+    
 
 </div>
     {% else %} 

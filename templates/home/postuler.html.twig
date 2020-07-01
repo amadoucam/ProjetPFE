@@ -13,7 +13,7 @@
 
     {% if is_granted('ROLE_USER') %} {#{{ form(formPostuler) }}#}
        {# <a class="btn btn-info" href="{{ path('offres_annonce_postulation', {'id': app.user.id}) }}">Postuler pour L'Offre</a> <br/>#}
-        
+        {% include "flash_messages.html.twig" %}
        {#} <h1>Pour postuler veuillez écrire le meme email de votre compte</h1>#}
            
           {{ form_start(formPostuler) }}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Postuler{% endblock %}
+
+{% block body %}
+    <h1>Create new Postuler</h1>
+
+    {{ include('postuler/_form.html.twig') }}
+
+    <a href="{{ path('postuler_index') }}">back to list</a>
+{% endblock %}

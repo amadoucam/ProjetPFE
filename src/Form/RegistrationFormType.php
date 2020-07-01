@@ -15,16 +15,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom_entreprise')
+            ->add('nom_entreprise', TextType::class)
             ->add('adresse', TextareaType::class)
             ->add('code_postal', NumberType::class)
-            ->add('ville')
+            ->add('ville', TextType::class)
             ->add('secteur_activite')
             ->add('pays', CountryType::class)
             ->add('description', TextareaType::class)
@@ -35,8 +36,8 @@ class RegistrationFormType extends AbstractType
                     'autre' => 'autre',
                 ],
             ])
-            ->add('phone')
-            ->add('email')
+            ->add('phone', NumberType::class)
+            ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)
         ;

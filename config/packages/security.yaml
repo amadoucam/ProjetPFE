@@ -17,7 +17,7 @@ security:
             
         app_user_provider:
             entity:
-                class: App\Entity\Administrateur
+                class: App\Entity\Recruteur
                 property: email
      
         # used to reload user from session & other features (e.g. switch_user)

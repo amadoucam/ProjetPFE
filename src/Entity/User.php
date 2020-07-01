@@ -65,7 +65,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="Veuillez écrire votre Date de Naissance ")
+     * @Assert\LessThan("now")
      */
     private $datenaissance;
 
@@ -82,6 +82,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\LessThan("5")
      * @Assert\NotBlank(message="Veuillez écrire le Code Postal ")
      */
     private $postal_code;

@@ -90,6 +90,7 @@ class OffreController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash('success', 'Offre supprimer avec succes!');
         return $this->redirectToRoute('offre_index');
     }
 }

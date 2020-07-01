@@ -8,35 +8,13 @@
 
     {% if app.user %} {#.email == ""#}
     <div class="container">
-<script type="text/javascript">
-    $(document).ready(function() {
-        //alert("cc");
-        // Setup - add a text input to each footer cell
-        $('#example tfoot th').each( function () {
-            var title = $(this).text();
-            $(this).html( '<input type="text" placeholder="Chercher '+title+'" />' );
-        } );
-        // DataTable
-        var table = $('#example').DataTable();
-        // Apply the search
-        table.columns().every( function () {
-            var that = this;
-            $( 'input', this.footer() ).on( 'keyup change', function () {
-                if ( that.search() !== this.value ) {
-                    that
-                        .search( this.value )
-                        .draw();
-                }
-            } );
-        } );
-    } );
-</script>
+
 <h1 align = "center">Tous les Cv des Candidats</h1>
 
 <table id="example" class="table" style="width:100%"> {#display#}
     <thead>
     <tr>
-        <th>id</th>
+        
         <th>Nom</th>
         <th>Prenom</th>
         <th>E-mail</th>
@@ -49,7 +27,7 @@
     {% for con in candidat %}
 
     <tr>
-        <td>{{con.id}}</td>
+        
         <td>{{con.nom}}</td>
         <td>{{con.prenom}}</td>
         <td>{{con.email}}</td>
@@ -72,7 +50,7 @@
     </tr> #}
     </tfoot>
 </table>
-    </div><br/>
+    </div><br/><br/>
     {% endif %}
   
 {% endblock %}

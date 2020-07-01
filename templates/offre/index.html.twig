@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Offre index{% endblock %}
+{% block title %}Liste des Offres{% endblock %}
 
 {% block body %}
 <br/>
@@ -9,11 +9,12 @@
 <br/>
 <div class="container">
     <h1>Tous les offres d'emploi</h1>
+    {% include "flash_messages.html.twig" %}
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                
                 <th>Title</th>
                 <th>Content</th>
                 <th>Image</th>
@@ -25,15 +26,15 @@
         <tbody>
         {% for offre in offres %}
             <tr>
-                <td>{{ offre.id }}</td>
+                
                 <td>{{ offre.title }}</td>
                 <td>{{ offre.content }}</td>
                 <td>{{ offre.image }}</td>
                 <td>{{ offre.createdAt ? offre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ offre.categorie }} </td>
                 <td>
-                    <a href="{{ path('offre_show', {'id': offre.id}) }}">show</a>
-                    <a href="{{ path('offre_edit', {'id': offre.id}) }}">edit</a>
+                    <a href="{{ path('offre_show', {'id': offre.id}) }}">Afficher</a>
+                    <a href="{{ path('offre_edit', {'id': offre.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -44,7 +45,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-info" href="{{ path('offre_new') }}">Create new</a>
+    <a class="btn btn-info" href="{{ path('offre_new') }}">Créer une offre</a>
 </div><br/><br/><br/>
 
 {% endblock %}

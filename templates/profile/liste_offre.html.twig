@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class= "container">
+    {% if app.user %}
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="card-center" style="width:400px">
+  <div class="card-body">
+
+      <p><strong>  {{ app.user.email }} </strong></p>
+            <p>Tel : + {{ app.user.phone }}</p>
+            <p>Description de votre entreprise : {{ app.user.description }}</p>
+            <p>Adresse de votre entreprise : {{ app.user.adresse }}</p>
+            <strong> Vous avez créer cette offre ✅: &nbsp;<a href="{{ path('offres_annonce_show', {'id': offre.id}) }}"> <p> {{ offre }}</p> </a></strong>
+      <h3>Si un candidat reponds à vos critères vous pouvez le contacter après Merci!!!</h3>   
+
+  </div>
+
+</div><br/>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Vous besoin de connecter avant !
+        </div>
+    {% endif %}
+ </div><br/><br/>
+
+{% endblock %}

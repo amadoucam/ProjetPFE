@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Postuler index{% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+
+<div class="container">
+    <h1>Postuler index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for postuler in postulers %}
+            <tr>
+                <td>{{ postuler.id }}</td>
+                <td>{{ postuler.firstname }}</td>
+                <td>{{ postuler.lastname }}</td>
+                <td>{{ postuler.email }}</td>
+                <td>{{ postuler.phone }}</td>
+                <td>
+                    <a href="{{ path('postuler_show', {'id': postuler.id}) }}">show</a>
+                    <a href="{{ path('postuler_edit', {'id': postuler.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('postuler_new') }}">Create new</a>
+</div> <br/><br/>
+
+{% endblock %}

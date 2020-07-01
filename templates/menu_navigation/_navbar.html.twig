@@ -11,9 +11,8 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          {% if is_granted('ROLE_SUPER_ADMIN') %}
+          {% if is_granted('ROLE_USER') %}
   
-          {% else %}
             <li class="{{ app.request.get('_route') == 'offres_recherche' ? 'active' : '' }}"><a class="search-btn" href="{{ path('offres_recherche') }}"><i class="fas fa-search"></i>Recherche</a></li>
           {% endif %}
           
@@ -42,6 +41,10 @@
             <ul>
               
               <li><a href="{{ path('candidat', {'id' : app.user.id }) }}">Mon Cv</a></li> 
+              {% for postuler in app.user.postulers  %}
+                <li><a href="{{ path('postulations', {'user': app.user.id, 'id': postuler.id}) }}"> postulation&nbsp;{{ postuler.id }}</a></li>
+              {% endfor %}
+               
               <li><a href="{{ path('profile')}}">Profile</a></li> 
               
               <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
@@ -55,8 +58,10 @@
              {# <li><a href="{{ path('offres_create') }}">Creér Offre</a></li>#}
               <li><a href="{{ path('allCv') }}">CV des Candidat</a></li>
               <li><a href="{{ path('offres_create', {'id' : app.user.id }) }}">Creér Offre</a></li>
-              
-              <li><a href="{{ path('security_logout') }}">Deconnexion</a></>
+              {% for offre in app.user.offres  %}
+                <li><a href="{{ path('liste_offre', {'id': app.user.id, 'offres': offre.id}) }}"> Offre&nbsp;{{ offre.id }}</a></li> 
+              {% endfor %}
+              <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
             </ul>
           </li>
           {% else %}

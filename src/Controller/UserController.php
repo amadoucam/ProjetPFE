@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 /**
@@ -21,6 +22,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UserController extends AbstractController
 {
+
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
@@ -63,7 +65,7 @@ class UserController extends AbstractController
     /**
      * @Route("edit/{id}", name="user_edit", methods={"GET","POST"})
      */
-    public function editProfil(User $user, Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    public function editProfil(User $user, Request $request, SluggerInterface $slugger, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(UserType::class, $user);
@@ -81,9 +83,28 @@ class UserController extends AbstractController
                     $destination,
                     $newFilename
                 );
-                $user->setAvatar($newFilename);
-
+            $user->setAvatar($newFilename);
             }
+
+            $brochureFile = $form->get('cv')->getData();
+            if ($brochureFile) {
+                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $Filename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $brochureFile->move(
+                        $this->getParameter('brochures_directory'),
+                        $Filename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $user->setCv($Filename); 
+                }
 
             $this->getDoctrine()->getManager()->flush();
             //$user->setAvatar($fileName);
@@ -101,23 +122,34 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="user_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, User $user): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($user);
-            $entityManager->flush();
 
-            $this->addFlash('danger', 'Votre compte à bien été supprimer.');
+}
+
+
+/*
+
+  @Route("/users/pass/modifier", name="user_pass_modifier")
+     
+    public function editPass(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        if($request->isMethod('POST')){
+            $em = $this->getDoctrine()->getManager();
+
+            $user = $this->getUser();
+
+            // On vérifie si les 2 mots de passe sont identiques
+            if($request->request->get('pass') == $request->request->get('pass2')){
+                $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
+                $em->flush();
+                $this->addFlash('message', 'Mot de passe mis à jour avec succès');
+
+                return $this->redirectToRoute('home');
+            }else{
+                $this->addFlash('error', 'Les deux mots de passe ne sont pas identiques');
+            }
         }
 
-        return $this->redirectToRoute('home');
-        
+        return $this->render('user/editpass.html.twig');
     }
 
-    
-}
+*/

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
+use App\Repository\RecruteurRepository;
 use App\Entity\Postuler;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
@@ -108,7 +109,8 @@ class HomeController extends AbstractController
             $entityManager->persist($offres);
             $entityManager->flush();
 
-            return $this->redirectToRoute('home'); //, ['id' => $offres->getId()]);
+            $this->addFlash('success', 'Offre Créer avec succes!');
+            return $this->redirectToRoute('offres_annonce'); 
 
             }
 
@@ -132,7 +134,8 @@ class HomeController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('offres_annonce_show');
+            $this->addFlash('success', 'Offre modifier avec succes!');
+            return $this->redirectToRoute('offres_annonce_show', ['id' => $offres->getId()]);
             }
 
               //return $this->redirectToRoute('offres_annonce', ['id' => $offres->getId()]);
@@ -145,15 +148,33 @@ class HomeController extends AbstractController
             ]);
     }
 
+    /**
+     * @Route("/mes_offres/{offres}/{id}", name="liste_offre")
+     */
+    public function postulation($id, Request $request, Recruteur $recruteur, Offre $offres)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(recruteur::class);
+        $recruteur = $repository->find($recruteur); 
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(offre::class);
+        $offre = $repository->find($offres);
+
+        $em = $this->getDoctrine()->getManager();
+        
+        return $this->render('profile/liste_offre.html.twig', [
+            'recruteur' => $recruteur,
+            'offre' => $offre,
+        ]);
+    }
 
     /**
      * @Route("/offres/{id}", name="offres_annonce_show")
      */
     public function show(Offre $offres, $id, Request $request, EntityManagerInterface $manager, \Swift_Mailer $mailer) 
     {
-
         return $this->render('home/show.html.twig', [
-            
             'offres' => $offres,
         ]);
     }
@@ -175,8 +196,7 @@ class HomeController extends AbstractController
         $form = $this->createForm(PostulerType::class, $postuler);
         $form->handleRequest($request);
         $postuler->setUser($user);
-         $postuler->setOffre($offre);
-       
+        $postuler->setOffre($offre);     
 
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
@@ -185,7 +205,6 @@ class HomeController extends AbstractController
             $manager->persist($postuler);
             $manager->flush();
             
-
             $message = (new \Swift_Message('Nouveau compte'))
                 // On attribue l'expéditeur
                 ->setFrom('camaraamadou775@gmail.com')
@@ -200,7 +219,7 @@ class HomeController extends AbstractController
 
             $mailer->send($message);
 
-            $this->addFlash('success', 'Votre message à été Envoyez avec succes!');
+            $this->addFlash('success', 'Vous avez postuler avec succes!');
             //return $this->redirectToRoute('home');
             return $this->redirectToRoute('profile');
         
