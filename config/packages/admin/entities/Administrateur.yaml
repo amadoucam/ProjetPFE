@@ -1,0 +1,15 @@
+easy_admin:
+  entities:
+    Administrateur:
+      class: App\Entity\Administrateur
+      form:
+        fields:
+          - {property: 'email'}
+          - {property: 'password'}
+
+      list:
+        #fields:
+          #- {property: 'online', type: 'text'}
+        actions:
+            - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+            - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'} 

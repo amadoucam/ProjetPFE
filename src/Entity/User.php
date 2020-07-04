@@ -82,7 +82,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\LessThan("5")
+     * @Assert\LessThan("9000")
      * @Assert\NotBlank(message="Veuillez écrire le Code Postal ")
      */
     private $postal_code;

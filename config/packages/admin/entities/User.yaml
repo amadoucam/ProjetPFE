@@ -6,7 +6,7 @@ easy_admin:
         fields:
           - {property: 'nom'}
           - {property: 'prenom'}
-          - {property: 'password', type: 'password', params: { max: 15 }}
+          - {property: 'password', params: { max: 15 }}
           #- {property: 'confirm_password'}
           - {property: 'email'}
           - {property: 'username'}

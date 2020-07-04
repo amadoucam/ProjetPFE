@@ -16,6 +16,7 @@ easy_admin:
           - { label: 'Users' }
           - {entity: 'Recruteur', icon: 'user', label: 'Entreprise'}
           - {entity: 'User', icon: 'user', label: 'Candidat'} #, permission: 'ROLE_SUPER_ADMIN'
+          - {entity: 'Administrateur', icon: 'user', label: 'Admin'}
           - { label: 'Offres' }
           - {entity: 'Offre', icon: 'tag', label: 'Offres'}
           - {entity: 'Categorie', icon: 'inbox', label: 'Categories'} 

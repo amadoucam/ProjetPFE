@@ -15,7 +15,7 @@ easy_admin:
           - {property: 'description'}
           - {property: 'civility'}
           - {property: 'email', type: 'email'}
-          - {property: 'password', type: 'password', params: { max: 15 }}
+          - {property: 'password', params: { max: 15 }}
           #- {property: 'confirm_password'}
           - {property: 'offres'}
           - {property: 'phone', type: 'tel', icon: 'phone'}
