@@ -19,11 +19,12 @@
     {% endif %}
 
     {{ form_start(formOffre) }}
-    {{ form_row(formOffre.title, {'attr': {'placeholder' : "Titre de l'offre"}}) }}
-    {{ form_row(formOffre.categorie) }}
-    {{ form_row(formOffre.content, {'attr': {'placeholder' : "Contenu de l'offre"}}) }}
-    {{ form_row(formOffre.image, {'attr': {'placeholder' : "Image de l'offre"}}) }}
-    {{ form_row(formOffre.createdAt, {'label' : "Date Création"}) }}
+    <div class="col-sm-6">{{ form_row(formOffre.title, {'attr': {'placeholder' : "Titre de l'offre"}}) }}</div>
+    <div class="col-sm-6">{{ form_row(formOffre.categorie) }}</div>
+    <div class="col-sm-6">{{ form_row(formOffre.ville) }}</div>
+    <div class="col-sm-6">{{ form_row(formOffre.content, {'attr': {'placeholder' : "Contenu de l'offre"}}) }}</div>
+    <div class="col-sm-6">{{ form_row(formOffre.image, {'attr': {'placeholder' : "Image de l'offre"}}) }}</div>
+    <div class="col-sm-6">{{ form_row(formOffre.createdAt, {'label' : "Date Création"}) }}</div>
     <button type="submit" class="btn btn-info">
         {% if editMode %}
         Enregistrer

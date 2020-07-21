@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class PostulerType extends AbstractType
 {
@@ -19,7 +20,7 @@ class PostulerType extends AbstractType
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('email', EmailType::class)
-            ->add('phone', NumberType::class)
+            ->add('phone', TelType::class)
             //->add('save', SubmitType::class)
             //->add('user')
         ;

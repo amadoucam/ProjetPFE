@@ -7,6 +7,7 @@ use App\Form\RegistrationType;
 use App\Repository\UserRepository;
 use App\Repository\RecruteurRepository;
 use App\Entity\Postuler;
+use App\Form\Postuler1Type;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
 use App\Entity\CategorySearch;
@@ -23,6 +24,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -37,7 +39,7 @@ class HomeController extends AbstractController
         //throw $this->createAccessDeniedException('Vous ne pouvez pas accéder à cette page');
 
         return $this->render('home.html.twig');
-    }
+    } 
 
     /**
      * @Route("/recherche", name="offres_recherche", methods={"GET", "POST"})
@@ -52,13 +54,30 @@ class HomeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
            
             $title = $propertySearch->getTitle();
-              //$cat = $propertySearch->getCategorie();
-            if($title != ""){    
+            $ville = $propertySearch->getVille();
+            $categorie = $propertySearch->getCategorie();
+      /*      if($title != ""){  
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['title' => $title]);  
+            }else
+            {      
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findAll();
+            }  */
+
+            if($ville != ""){  
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['ville' => $ville]);  
+                
+            }else
+            {      
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findAll();
+            } 
+
+        /*    if($categorie != ""){    
                 $offres = $this->getDoctrine()->getRepository(Offre::class)->findAll();
             }else 
             {      
-                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['title' => $title]);
-            } 
+                $offres = $this->getDoctrine()->getRepository(Offre::class)->findBy(['categorie' => $categorie]);
+            }  */
+
         }
 
         return $this->render('home/recherche.html.twig', [
@@ -170,7 +189,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/offres/{id}", name="offres_annonce_show")
+     * @Route("/offres/{id}", name="offres_annonce_show") 
      */
     public function show(Offre $offres, $id, Request $request, EntityManagerInterface $manager, \Swift_Mailer $mailer) 
     {
@@ -178,12 +197,11 @@ class HomeController extends AbstractController
             'offres' => $offres,
         ]);
     }
-
     
     /**
      * @Route("/offres/postuler/{user}/offre/{offres}", name="offres_annonce_postulation")
      */
-    public function postuler(Offre $offres, User $user, Request $request, EntityManagerInterface $manager, \Swift_Mailer $mailer) 
+    public function postuler(Offre $offres, User $user, Request $request, EntityManagerInterface $manager) 
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         
@@ -199,28 +217,13 @@ class HomeController extends AbstractController
         $postuler->setOffre($offre);     
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $contactFormData = $form->getData();
+            $FormData = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             
             $manager->persist($postuler);
             $manager->flush();
-            
-            $message = (new \Swift_Message('Nouveau compte'))
-                // On attribue l'expéditeur
-                ->setFrom('camaraamadou775@gmail.com')
-                // On attribue le destinataire
-                ->setTo($contactFormData->getEmail())
-                // On crée le texte avec la vue
-                ->setBody(
-                    $contactFormData->getUser(),
-                    'text/html'
-                )
-            ;
-
-            $mailer->send($message);
 
             $this->addFlash('success', 'Vous avez postuler avec succes!');
-            //return $this->redirectToRoute('home');
             return $this->redirectToRoute('profile');
         
         }
@@ -228,12 +231,10 @@ class HomeController extends AbstractController
         return $this->render('home/postuler.html.twig', [
             'user' => $user,
             'offre' => $offre,
-        
             'formPostuler' => $form->createView(),
         ]);
     }
    
-
 }
 
 

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}6 Chose à faire{% endblock title %}
+
+{% block body %}
+<br/>
+<br/>
+
+    <!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{{ path('home') }}">Home</a></li>
+			<li class="active">/Recruteur</li>&nbsp;&nbsp;
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-9 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Le respect de la vie privée des candidat·es, une obligation légale et un confort de travail</h1>
+                    <br/>
+				</header>
+				
+				<p>
+                <strong>Aller sur le terrain de la vie privée des candidat·es c’est entrer dans l’illégalité. Respecter la loi sur les discriminations à l’embauche évite non seulement un risque de sanctions aux recruteurs et recruteuses, mais encore, des choix biaisés.</strong><br/><br/>
+                La loi oblige au respect de la vie privée des candidat·es. En France, l’article L1132-1 du code du travail rend illégale la discrimination à l’embauche — une discrimination avérée est définie par l’article 225-1 du code pénal. Cette dernière est passible d’une amende pouvant aller jusqu’à 45 000 euros d’amende et de trois ans de prison pour un employeur personne physique, et d’une amende pouvant aller jusqu’à 225 000 euros ainsi que d’une interdiction d’exercer l’activité pour les personnes morales.
+                Au-delà de l’aspect légal, « la connaissance de certains éléments de l’ordre de la vie privée influence et biaise le recrutement », observe Fabienne Margotteau, fondatrice du cabinet Auréane Conseil et membre d’À compétence égale, association d’experts en recrutement qui luttent contre les discriminations. En se limitant à des questions strictement professionnelles, la personne qui recrute, loin de passer à côté d’informations essentielles, trouve un confort de travail. « Il faut savoir que peu de recruteur·ses posent des questions interdites pour discriminer, c’est un besoin d’information qui les guide », ajoute-t-elle. Bonne nouvelle, satisfaire ce besoin sans se mettre hors la loi est possible.
+                </p>
+				<br/>
+                <h2>Savoir qu’il existe des questions hors la loi</h2>
+                <p>
+                « Beaucoup de personnes qui recrutent ne savent pas qu’il est interdit de poser certaines questions en entretien, sur la nationalité d’un·e candidat·e par exemple, ou sur son lieu de résidence », constate notre interlocutrice. Si la plupart des recruteurs et recruteuses (intermédiaires de recrutement, RH ou opérationnel·les) ont connaissance d’interdits, ils·elles sous-estiment le nombre de sujets à ne pas aborder pendant l’entretien. La question de l’âge par exemple, qui continue d’être posée — pas toujours frontalement — et reste un sujet pour les candidatures de seniors. <a href="https://acompetenceegale.com/24-criteres-de-discrimination" target="_blank">Sachez que la liste des critères de discrimination, mise à jour sur le site d’À compétence égale</a>, s’est allongée et qu’elle en compte désormais 24.
+                </p><br/>
+                <h2>Questionner la ou le candidat·e seulement par rapport aux conditions du poste</h2>
+                <p>
+                Le questionnement des recruteur·ses, qui ont besoin de vérifier, de se rassurer, est légitime ; la manière d’interroger, elle, peut-être problématique. La meilleure façon de vérifier qu’une candidate ou un candidat est mobile par exemple est de lui poser directement une question relative aux conditions du poste : — Ce poste nécessite des déplacements, êtes-vous disponible ? « La demande d’information doit toujours être en lien avec l’emploi proposé. Il faut demander si telles conditions conviennent, correspondent au projet du candidat ou de la candidate », recommande Fabienne Margotteau.
+                </p><br/>
+                <br/>
+                <h2>Faire confiance au candidat ou à la candidate</h2>
+                <p>
+                « La personne qui recrute peut se rassurer en demandant à la personne qui candidate si telles conditions du poste la renvoient à une situation qu’elle a déjà connue par le passé », poursuit notre interlocutrice. En matière d’horaires de travail, autre exemple, il convient de demander si travailler tard est possible en cas d’urgence.
+                « Pour approfondir un sujet, posez des questions relatives aux conditions dans lesquelles la personne a travaillé auparavant », conseille-t-elle. Et faites-lui confiance, elle sait ce qui est bon pour elle.
+                </p><br/>
+                <h2>Respecter la vie privée des candidat·es pour plus de neutralité mais aussi plus de confort de travail</h2>
+                <p>
+                « Les informations d’ordre privé, parfois porteuses d’une charge émotionnelle, n’interfèrent pas dans la prise de décision de la personne qui recrute, c’est pour elle un sacré confort de travail », souligne Fabienne Margotteau. Et s’il arrive que certain·es candidat·es mettent tout sur la table —question de franchise à leurs yeux —, ne les rejoignez pas sur ce terrain glissant.
+                </p><br/>
+                
+			</article>
+			
+			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-3 sidebar sidebar-right">
+
+				<div class="widget">
+					<img src="{{ asset('images/conseil-recruteur/vie_privee.jpeg') }}" style="width:100%" alt="">
+					<address>
+						Conseil vie Privée?
+					</address>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+		
+	</div>	<!-- /container --><br/><br/>
+
+{% endblock %}
+
+

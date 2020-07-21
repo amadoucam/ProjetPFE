@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseil Rediger cv{% endblock title %}
+
+{% block body %}
+<br/>
+<br/>
+
+    <!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{{ path('home') }}">Home</a></li>
+			<li class="active">/Rédiger un CV</li>&nbsp;&nbsp;
+			{% include "flash_messages.html.twig" %}
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-9 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Senior : Faut-il organiser son CV par compétence ou expérience ?</h1>
+                    <p>Mr Camara | 31/06/2020</p>
+				</header>
+				
+				<p>
+                Comment résumer ses expertises et compétences accumulées au fil des années ? L’exercice est un challenge qui demande une bonne dose de réflexion pour réaliser un CV synthétique et cohérent.    
+				</p>
+				<br/>
+                <p>
+                La mobilité professionnelle doit se préparer minutieusement. Pour un profil senior, le premier challenge revient à résumer l’expérience accumulée pendant plusieurs décennies. Tout d’abord, avant même de commencer à rédiger votre CV, commencez par prendre une page blanche pour lister tout ce que vous avez accompli. Un travail sur soi qui permet de se souvenir des compétences acquises et de reprendre confiance. Pour Stéphanie Lecerf, présidente de À compétence égale, une association qui œuvre contre les discriminations à l’embauche et pour la diversité de l’emploi, « cet exercice permet au candidat de retraduire en compétence ce qu’il retire de son expérience. Et bonus, cela l’aidera aussi à préparer l’entretien quand le recruteur lui demandera à quelle occasion il a pu mettre en avant ces compétences ».
+                </p><br/>
+                <h2>Mettre en avant son expertise</h2>
+                <p>
+                La rédaction d’un CV est un travail d’orfèvre qui demande du temps même quand on est un professionnel aguerri. L’exercice est d’autant plus délicat quand on a une longue carrière derrière soi. Le premier (mauvais) réflexe serait de vouloir lister tout ce qu’il a accompli. « Souvent, la population senior a tendance à s’auto discriminer en pensant que la seule chose qu’elle peut valoriser, c’est son expérience des années travaillées plus que leur expertise. Mais ce choix n’est pas assez précis pour un recruteur. Nous conseillons aux personnes dotées d’un parcours assez riche, - plus de 20 ans de carrière - de ne pas faire un CV chronologique avec des intitulés de poste qui, aujourd’hui évoluent constamment. En effet, cette méthodologie ne recouvre pas toutes les compétences exercées et ne fait pas ressortir les mots clés nécessaires dans un CV ». Le cocktail idéal serait de donc de mixer les titres et les fonctions occupées. « Ce qui intéresse un recruteur, c’est de découvrir les projets confiés et compétences développées par le candidat. Aujourd’hui, la plupart des métiers de demain n’existant pas encore, les recruteurs vont donc rechercher des compétences transversales voire transférables d’un métier à l’autre ». Des compétences qui, pour Stéphanie Lecerf «  enveloppent le savoir professionnel, les compétences techniques et les compétences comportementales ».
+                </p><br/>
+                <h2>Un CV agile et cohérent</h2>
+                <p>
+                Miser sur les compétences évitera aussi au candidat de surcharger son CV ce qui pourrait le desservir. Et pour choisir les bonnes compétences pour le poste, Il a tout intérêt à optimiser son CV en fonction du poste visé avec des informations pertinentes. « Il ne s’agit pas de tricher sur le CV mais de s’approprier les codes du métier qu’on recherche. A partir de là, on peut adapter son CV en fonction des offres tout en affichant un parcours cohérent. Pour cela, on se focalise sur les expériences marquantes de ces dernières années, pas besoin d’indiquer toutes les expériences professionnelles et les stages ». Et dans le cas d’un comptable qui aurait travaillé pour la même entreprise pendant 20 ans, il peut tout à fait démontrer que sa carrière représente plusieurs postes occupés, des évolutions et des compétences transversales acquises. « Le recruteur remarquera que le candidat a pu évoluer et a su se former » souligne Stéphanie Lecerf qui est aussi DRH du cabinet de recrutement Page Groupe.
+                </p><br/>
+                <h2>Se familiariser avec les codes du recrutement</h2>
+                <p>
+                Si votre dernier entretien d’embauche remonte à 2003, les choses ont beaucoup évolué depuis. On parle de soft skills, de compétences transversales, de mots clés ou encore d’entretien vidéo. Il est donc crucial de se renseigner sur les attentes actuelles des recruteurs. Pour cela, il existe de nombreuses associations qui aident les candidats souffrant d’un gros déficit de confiance. C’est le cas de A Compétences Egales qui produit notamment des tutos de formation.  « On aurait tort de croire que rédiger un CV est intuitif : il y a des codes à connaître pour bien répondre aux attentes actuelles. Il faut se mettre à jour sur la sémantique de son métier pour être en adéquation avec les thèmes actuels. Tout comme il est aussi judicieux de se renseigner sur l’entreprise à laquelle on écrit, son environnement et ses besoins ».  Et Stéphanie Lecerf de conclure avec un dernier conseil : « Attention à ne pas s’isoler. Il est important d’entretenir son réseau, rencontrer des associations locales et se faire connaître ». Et élargir ainsi son horizon professionnel.
+                </p>
+                
+
+			</article>
+			
+			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-3 sidebar sidebar-right">
+
+				<div class="widget">
+					<img src="{{ asset('images/conseil-carriere/conseil.jpg') }}" alt="">
+					<address>
+						(+216) 56-369-119
+					</address>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+		
+	</div>	<!-- /container --><br/><br/>
+
+{% endblock %}
+
+

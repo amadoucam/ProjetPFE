@@ -55,7 +55,6 @@ class Recruteur implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\LessThan("5")
      * @Assert\NotBlank(message="Veuillez écrire votre Ville ")
      */
     private $ville;

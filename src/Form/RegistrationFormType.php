@@ -16,6 +16,8 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -36,7 +38,7 @@ class RegistrationFormType extends AbstractType
                     'autre' => 'autre',
                 ],
             ])
-            ->add('phone', NumberType::class)
+            ->add('phone', TelType::class)
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)

@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class OffreType extends AbstractType
 {
@@ -21,8 +22,9 @@ class OffreType extends AbstractType
                 'class' => Categorie::class,
                 'choice_label' => 'title'
             ])
-            ->add('content')
+            ->add('content', TextareaType::class)
             ->add('image')
+            ->add('ville')
             ->add('createdAt', DateTimeType::class, [
                 'widget' => 'single_text',
             ])

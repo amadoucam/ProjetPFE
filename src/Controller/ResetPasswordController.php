@@ -31,8 +31,8 @@ class ResetPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($encoder->encodePassword($user, $form->get('newPassword')->getData()));
-
+            $user->setPassword($encoder->encodePassword($user, $form->get('newPassword')->getData())); 
+  
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('security_logout');

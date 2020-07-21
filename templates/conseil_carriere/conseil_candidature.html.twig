@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseil Candidature cv{% endblock title %}
+
+{% block body %}
+<br/>
+<br/>
+
+    <!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{{ path('home') }}">Home</a></li>
+			<li class="active">/Rédiger un CV</li>&nbsp;&nbsp;
+			{% include "flash_messages.html.twig" %}
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-9 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Quel CV pour une candidature spontanée ?</h1>
+                    <p>Mr Kebe | 27/01/2020</p>
+				</header>
+				
+				<p>
+                En 2018, l’Insee évaluait que 62% des personnes en recherche d’emploi misaient sur la candidature spontanée. Cette démarche fait partie du «marché caché» du travail (par opposition au marché ouvert), et représenterait 50 % des embauches selon Pôle Emploi. Envoyer un CV spontanément intervient donc dans un contexte particulier : il s’agit en effet de susciter l’attention d’une entreprise ou d’un recruteur qui, a priori n’est pas en recherche active de candidats. Et pourtant…Jusqu’à 1/3 des embauches se réalise suite à des candidatures spontanées. Car si le recruteur ne va pas forcément décrocher son téléphone dès réception de la candidature, il faut aussi miser une stratégie à moyen terme. En effet, quand surviendront certains besoins (départ en retraite, remplacement d’un congé maternité), le premier réflexe du recruteur sera de se tourner vers les candidatures spontanées archivées.
+				</p>
+				<br/><br/>
+                <h2>Savoir à qui on s’adresse</h2>
+                <p>
+                L’erreur trop commune, quand on démarche spontanément, est de rédiger un CV pour ensuite l’envoyer en masse à 20 ou 50 entreprises. Mieux vaut cibler en amont les entreprises qui vous intéressent véritablement. Cela commence par un travail d’investigation sur l’entreprise : vous avez besoin de comprendre sa culture, évaluer les compétences et les qualifications recherchées, mesurer ses ambitions de développement. Une fois l’entreprise ciblée, il faut mener une autre enquête via les réseaux professionnels ou les annuaires pour connaître les moyens et la saisonnalité des recrutements ainsi que le nom exact de la personne susceptible de recevoir votre candidature. Vous avez aussi la possibilité d’envoyer le CV à plusieurs personnes dans l’entreprise, le responsable des ressources humaines et le directeur commercial par exemple.
+                </p><br/>
+                <h2>Soigner son CV</h2>
+                <p>
+                Un candidat doit aussi s’occuper de la forme du CV. N’oubliez pas que son apparence est aussi une marque de respect vis à vis du recruteur que vous cherchez à séduire. D’abord, il faut miser sur un papier blanc de bonne qualité avec une police classique et surtout lisible, le critère préféré des recruteurs. Si vous n’avez pas d’amis graphistes, des sites comme Canva aident à créer et personnaliser un CV que vous le préfériez professionnel, formel, moderne, classique ou minimaliste. Evidemment, il faut absolument éviter les fautes et les ratures, éléments rédhibitoires pour tout recruteur.
+                </p><br/>
+                <h2>Cibler son poste</h2>
+                <p>
+                Vous sollicitez un recruteur qui n’attend pas après vous. Pour retenir son attention immédiatement, commencez par énoncer dans le titre de votre CV, le poste que vous recherchez et ce, de façon brève et précise. C’est donc le moment de mettre en avant vos points forts. Dans « Le grand livre du CV », Patrice Ras écrit que c’est « la première des trois questions que se pose le recruteur (…) le titre de votre CV lui donne un sens ». Un peu plus loin il encourage à indiquer le poste que vous briguez même si c’est un poste supérieur. Après tout, vous avez choisi l’entreprise, vous êtes acteur, et non pas demandeur, alors osez !
+                </p><br/>
+                <h2>Miser sur ses compétences</h2>
+                <p>
+                C’est la rubrique la plus importante du CV, plus décisive que les postes précédemment occupés ou l’obsession française des diplômes obtenus. Désormais, de nombreux professionnels conseillent d’organiser un CV en fonction des compétences. « Le savoir-faire réel »  décrit par Patrice Ras englobe des compétences techniques, transversales, intellectuelles, relationnelles et matérielles. Pas question de toutes les répertorier mais plutôt de mettre en avant celles qui sont cohérentes avec le poste qui vous intéresse. Une façon supplémentaire de convaincre le recruteur qu’il n’a pas un CV générique dans les mains.
+                </p><br/>
+                <h2>Prévoir une lettre de candidature</h2>
+                <p>
+                Une fois votre CV personnalisé achevé, il est impératif de l’accompagner d’une lettre concise dont le but est de synthétiser votre intérêt pour l’entreprise et votre parcours professionnel. Inutile de raconter votre vie, vous pourrez rentrer dans les détails si vous dérochez un entretien d’embauche. Et là encore, le candidat doit rester très vigilant sur l’orthographe et la syntaxe pour éviter d’atterrir dans la corbeille du recruteur.
+                </p><br/>
+                <h2>Privilégier le mail</h2>
+                <p>
+                Si votre investigation vous permet de décrocher l’adresse mail du recruteur, n’hésitez pas à lui envoyer le CV directement par mail. De cette façon, vous avez la certitude que votre interlocuteur a reçu votre candidature, contrairement à un courrier papier. C’est d’autant plus efficace qu’il peut décider de le faire suivre à d’autres personnes, vous rendant ainsi plus visible au sein de l’entreprise.
+                </p>
+                
+
+			</article>
+			
+			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-3 sidebar sidebar-right">
+
+				<div class="widget">
+					<img src="{{ asset('images/conseil-carriere/conseil2.jpg') }}" alt="">
+					<address>
+                    Quel CV pour une candidature spontanée ?
+					</address>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+		
+	</div>	<!-- /container --><br/><br/>
+
+{% endblock %}
+
+

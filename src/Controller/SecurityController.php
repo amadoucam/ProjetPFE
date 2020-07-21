@@ -129,7 +129,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error
-        ]);
+        ]); 
     }
 
     /**
@@ -304,3 +304,10 @@ class SecurityController extends AbstractController
 
 
 
+/*
+
+<p>Salut,</p>Une demande de réinitialisation de mot de passe a été effectuée pour le
+                                   site Emplois. Veuillez cliquer sur le lien suivant :<p>
+                                    <p> <a>$url</a></p>
+
+*/

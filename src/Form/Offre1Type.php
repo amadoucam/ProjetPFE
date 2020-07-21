@@ -8,6 +8,7 @@ use App\Entity\Offre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class Offre1Type extends AbstractType
 {
@@ -15,8 +16,9 @@ class Offre1Type extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content')
+            ->add('content', TextareaType::class)
             ->add('image')
+            ->add('ville')
             ->add('createdAt')
             ->add('categorie')
             //->add('recruteur')

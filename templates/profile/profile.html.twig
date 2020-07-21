@@ -60,8 +60,9 @@
                 <p>{{app.user.email}}</p>
                 <p>{{ app.user.phone }}</p>
                 <p>{{app.user.adresse}}</p>
+               {# <div class="text-break"></div> #}
             </div>
-            
+                        
             <p><a href="{{ path('recruteur_edit', {'id' : app.user.id }) }}"><button>Edit</button></a></p>
         </div>
             {% endif %}

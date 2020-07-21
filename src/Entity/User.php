@@ -264,9 +264,6 @@ class User implements UserInterface, \Serializable
      */
     public function __construct()
     {
-        $this->formation = new ArrayCollection();
-        $this->experiences = new ArrayCollection();
-        $this->langues = new ArrayCollection();
         $this->livres = new ArrayCollection();
         $this->postulers = new ArrayCollection();
     }
@@ -305,52 +302,6 @@ class User implements UserInterface, \Serializable
         $this->postal_code = $postal_code;
 
         return $this;
-    }
-
-    /** @see \Serializable::serialize() */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->email,
-            $this->username,
-            $this->password,
-            $this->nom,
-            $this->prenom,
-            $this->datenaissance,
-            $this->nationalite,
-            $this->adresse,
-            $this->avatar,
-            $this->postal_code,
-            $this->civility,
-            $this->tel,
-            $this->level,
-            $this->cv,
-
-        ));
-    }
-
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->email,
-            $this->username,
-            $this->password,
-            $this->nom,
-            $this->prenom,
-            $this->datenaissance,
-            $this->nationalite,
-            $this->adresse,
-            $this->avatar,
-            $this->postal_code,
-            $this->civility,
-            $this->tel,
-            $this->level,
-            $this->cv,
-
-        ) = unserialize($serialized); 
     }
 
     public function getAvatar()
@@ -471,6 +422,52 @@ class User implements UserInterface, \Serializable
         }
 
         return $this;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->username,
+            $this->password,
+            $this->nom,
+            $this->prenom,
+            $this->datenaissance,
+            $this->nationalite,
+            $this->adresse,
+            $this->avatar,
+            $this->postal_code,
+            $this->civility,
+            $this->tel,
+            $this->level,
+            $this->cv,
+
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->username,
+            $this->password,
+            $this->nom,
+            $this->prenom,
+            $this->datenaissance,
+            $this->nationalite,
+            $this->adresse,
+            $this->avatar,
+            $this->postal_code,
+            $this->civility,
+            $this->tel,
+            $this->level,
+            $this->cv,
+
+        ) = unserialize($serialized); 
     }
 
 }

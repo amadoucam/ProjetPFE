@@ -122,6 +122,21 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, User $user): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($user);
+            $entityManager->flush();
+
+            $this->addFlash('danger', 'Votre compte à bien été supprimer.');
+        }
+
+        return $this->redirectToRoute('home');
+    }
 
 }
 

@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Postuler;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @method Postuler|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +19,19 @@ class PostulerRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Postuler::class);
+    }
+
+    /**
+     * @return Postuler[]
+     */
+    public function PostulerOffre(PostulerRepository $postuler, $r )
+    {
+        return $this->createQueryBuilder('r')
+                        ->select('r.offre.id')
+                        ->where('r.postuler = :postuler')
+                        ->setParameter('postuler', $postuler) 
+                        ->getQuery()
+                        ->getSingleScalarResult(); 
     }
 
     // /**

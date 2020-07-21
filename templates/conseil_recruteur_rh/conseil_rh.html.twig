@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}6 Chose à faire{% endblock title %}
+
+{% block body %}
+<br/>
+<br/>
+
+    <!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{{ path('home') }}">Home</a></li>
+			<li class="active">/Recruteur</li>&nbsp;&nbsp;
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-9 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">6 choses à faire après la publication de l’offre d’emploi</h1>
+                    <p>Mr Abidi | 11/06/2020</p>
+				</header>
+				
+				<p>
+                <strong>Publier une offre d’emploi et attendre l’arrivée de candidatures est insuffisant. Pour recruter, soyez patients, curieux et actifs, comme les candidats doivent l’être pour trouver un job.</strong><br/>
+				« Le recruteur entre en scène avec l’offre d’emploi, celle-ci est une sorte de levée de rideau », observe Olivier Boishardy, Senior Talent Acquisition Partner chez Monster. Le recrutement se joue ensuite en plusieurs actes. Il demande différentes actions pour faire avancer « l’intrigue », et le temps nécessaire à la réalisation des choses.
+                </p>
+				<br/>
+                <h2>1. Donner le temps à l’offre d’emploi de se diffuser et de faire effet</h2>
+                <p>
+                « Recruter demande du temps et du recul. Sachez qu’il y a un temps de latence entre la publication de l’offre d’emploi et la réception des candidatures », ajoute notre interlocuteur. Bien que cela soit difficile à une époque dominée par l’impatience des candidats, armez-vous de patience et laissez tourner l’offre une semaine avant de tirer des conclusions.
+                </p><br/>
+                <h2>2. Mener une chasse parallèle à la publication de l’offre d’emploi</h2>
+                <p>
+                La publication d’une offre d’emploi ne dispense pas d’une « chasse » parallèle, démarche qui nécessite d’être prêt s’accorder du temps. « Il faut laisser toutes les portes ouvertes quand on recrute, on n’a rien à s’interdire », souligne Olivier Boishardy. Vous devez vous donner tous les moyens de trouver le candidat qui correspond à vos attentes. L’approche directe, la sollicitation de son réseau, physique ou virtuel, la cooptation sont des compléments naturels de la publication de l’offre d’emploi.
+                </p><br/>
+                <h2>3. Être plus curieux que l’offre d’emploi</h2>
+                <p>
+                « L’offre d’emploi définit votre recherche, votre identité d’employeur, le profil que vous voulez trouver mais elle ne doit pas figer votre recherche », pointe Olivier Boishardy. Sourcer un candidat pas suffisamment motivé par le poste est par exemple un autre moyen de persévérer dans sa quête.
+                </p><br/>
+                <h2>4. Prendre du recul par rapport à l’outil qu’est l’offre d’emploi</h2>
+                <p>
+                L’offre d’emploi définit le poste de façon carrée, analytique, elle dit votre volonté d’un profil type de candidat. Cela ne doit cependant pas enfermer votre recherche dans un cadre qui a ses propres contraintes, formelles notamment. L’annonce d’emploi est un outil, il faut prendre du recul par rapport à elle, comme avec n’importe quel outil. « Ouvrir la recherche permet de ramener de l’humanité dans le recrutement », poursuit notre interlocuteur.
+                </p><br/>
+                <h2>5. Puiser dans son vivier : une option limitée, du fait du RGPD et de la rapidité actuelle des évolutions</h2>
+                <p>
+                Puiser dans son vivier de candidats reste une option possible mais limitée, pour plusieurs raisons. D’une part le RGPD (Règlement général sur la protection des données) précise que les données personnelles doivent être supprimées si elles ne sont plus nécessaires au regard des finalités pour lesquelles elles ont été collectées. Et la CNIL préconise de supprimer les données des candidats au bout de deux ans si ceux-ci ne se sont pas manifestés dans ce laps de temps. D’autre part la pertinence du vivier dépend du domaine d’activité de l’entreprise. « Dans le digital par exemple, tout va très vite, les produits, les langages de programmation, les compétences recherchées changent très rapidement », explique Olivier Boishardy. Enfin, dans le contexte actuel, volatile, incertain, complexe et ambigu (VUCA), où les évolutions touchent les organisations, les outils, les marchés, les enseignements, les pratiques, etc., un vivier de candidats peut donc être rapidement inadapté aux besoins en termes de compétences recherchées.
+                </p><br/>
+                
+			</article>
+			
+			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-3 sidebar sidebar-right">
+
+				<div class="widget">
+					<img src="{{ asset('images/conseil-recruteur/recrut_candidat.jpg') }}" alt="">
+					<address>
+						6 choses à faire après la publication de l’offre?
+					</address>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+		
+	</div>	<!-- /container --><br/><br/>
+
+{% endblock %}
+
+

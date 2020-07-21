@@ -2,6 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Postuler;
+use App\Repository\PostulerRepository;
+use App\Entity\Recruteur;
+use App\Entity\Offre;
+use App\Repository\OffreRepository;
+use App\Repository\RecruteurRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
@@ -68,4 +75,28 @@ class ContactController extends AbstractController
             'our_form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/mes_postulations/{recruteur}", name="liste_postuler")
+     */
+    public function poster(PostulerRepository $postulerRepository,OffreRepository $offreRepository, Recruteur $recruteur, EntityManagerInterface $manager)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository(recruteur::class);
+        $recruteur = $repository->find($recruteur);  
+
+   /*   $repo = $this->getDoctrine()->getManager()->getRepository(postuler::class);
+      $postuler = $repository->find($id);  
+
+        $reposit = $this->getDoctrine()->getManager()->getRepository(offre::class);
+        $offre = $repository->find($offres); */
+
+        $manager = $this->getDoctrine()->getManager();
+
+        return $this->render('profile/chercheur_offre.html.twig', [
+            'offres' => $offreRepository->findAll(),
+            'recruteur' => $recruteur,
+            'postulers' => $postulerRepository->findById([1, 2]),
+        ]);
+    }
+
 }

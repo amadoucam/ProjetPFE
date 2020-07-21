@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseil Recruteur{% endblock %}
+
+{% block body %}
+<div class="container">
+
+<section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+          <h2>Conseils Recruteur</h2>
+          <p>
+          Infos sur le recrutement, tendances du marché du travail, meilleures techniques d'entretien et bien plus encore.
+          </p><br/>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+          
+              <img src="{{ asset('images/conseil-recruteur/recrut_candidat.jpg') }}" style="width:100%; height: 150px;" alt="">
+              <h4 class="title"><a href="{{ path('conseil_rh') }}"><br/>RH</a></h4>
+              <p class="description"><a href="{{ path('conseil_rh') }}">6 choses à faire après la publication de l’offre d’emploi</a></p>
+            
+          </div>
+
+          <div class="col-md-6">
+              <img src="{{ asset('images/conseil-recruteur/idée.jpg') }}" style="width:100%; height: 150px;" alt="">
+              <h4 class="title"><a href="{{ path('conseil_idees') }}"><br/>Conseil 6 idées</a></h4>
+              <p class="description"><a href="{{ path('conseil_idees') }}">Entretien : 6 idées pour améliorer l’expérience candidat</a></p>
+           
+          </div>
+
+          <div class="col-md-12"><br/><br/>
+          
+              <img src="{{ asset('images/conseil-recruteur/recrutement.png') }}" style="width:100%; height: 150px;" alt="">
+              <h4 class="title"><a href="{{ path('conseil_5_raison') }}"><br/>Conseil de Recrutement</a></h4>
+              <p class="description"><a href="{{ path('conseil_5_raison') }}">5 bonnes raisons de recruter des collaborateurs en situation de handicap</a></p>
+          
+          </div>
+
+          <div class="col-md-12"><br/><br/>
+          
+              <img src="{{ asset('images/conseil-recruteur/vie_privee.jpeg') }}" style="width:100%; height: 150px;" alt="">
+              <h4 class="title"><a href="{{ path('conseil_vie_privee') }}"><br/>Conseil de Recrutement</a></h4>
+              <p class="description"><a href="{{ path('conseil_vie_privee') }}">Le respect de la vie privée des candidat·es, une obligation légale et un confort de travail
+</a></p>
+          
+          </div>
+
+        </div> <br/>
+
+      </div>
+    </section>
+
+</div>    
+
+{% endblock %}

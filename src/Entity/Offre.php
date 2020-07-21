@@ -32,6 +32,11 @@ class Offre
     private $content;
 
     /**
+     * @ORM\Column(type="string", length=155)
+     */
+    private $ville;
+
+    /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Url()
      */
@@ -172,6 +177,18 @@ class Offre
                 $postuler->setOffre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

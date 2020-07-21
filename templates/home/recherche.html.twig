@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Offre index{% endblock %}
+{% block title %}Rechercher votre offre{% endblock %}
 
 {% block body %}
 <br/>
@@ -8,14 +8,16 @@
 <br/>
 
 <div class="container">
-    <h1 align = "center">Recherche une Offre d'emploi</h1>
-
+    <h1 align = "center">Recherche Offre d'emploi</h1>
   
    {{ form_start(form) }}
 <div class="form-rowalign-items-end">
   <div class="col">
-     {{ form_row(form.title) }}
-  {#   {{ form_row(form.categorie) }}  #}
+    <div class="row">
+{#    <div class="col-sm-4">{{ form_row(form.title) }}</div>
+#}      <div class="col-sm-4">{{ form_row(form.ville,{'label':'Ville ','attr':{'placeholder':'exp: Tunis'}}) }}</div>
+    {# {{ form_row(form.categorie) }}   #}
+    </div>
   </div>
   <div class="col">
    <div class="form-group">
@@ -31,9 +33,10 @@
                 
                 <th>Titre</th>
                 <th>Contenu</th>
-                <th>Date Creation</th>
+                <th>Date D'ajout</th>
                 <th>Categorie</th>
                 <th>Voir</th>
+                <th>Ville</th>
             </tr>
         </thead>
         <tbody>
@@ -44,9 +47,12 @@
                 <td>{{ offre.content }}</td>
                 <td>{{ offre.createdAt ? offre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ offre.categorie }}</td>
+                
+
                 <td>
                     <a href="{{ path('offres_annonce_show', {'id': offre.id}) }}">Afficher</a>
                 </td>
+                <td>{{ offre.ville }}</td>
             </tr>
              
         {% else %}

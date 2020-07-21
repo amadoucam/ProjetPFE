@@ -1,28 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Offre {% endblock %}
+{% block title %}Affichage Offre{% endblock %}
 
 {% block body %}
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
 <div class="container">
-    <article>
     {% include "flash_messages.html.twig" %}
-        <h2>{{ offres.title }}</h2>
-        <div class="metadata">Publier le <i class="fa fa-calendar"></i>{{ offres.createdAt | date('d/m/Y') }} à {{ offres.createdAt | date('H:i') }} dans la catégorie {{ offres.categorie.title }} </div> {#politique#}
-        <div class="content">
-            <img src="{{ offres.image }}" alt=""><br/>
-            {{ offres.content | raw }}
+    <div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-9 maincontent">
+				<header class="page-header">
+					<h1>{{ offres.title }}</h1>
+				</header>
+				
+                <p>Publier le <i class="fa fa-calendar"></i>{{ offres.createdAt | date('d/m/Y') }} à {{ offres.createdAt | date('H:i') }} dans la catégorie {{ offres.categorie.title }} </p>
+				<p>
+                A<i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{ offres.ville }}<br/>
+                <div class="text-break text-capitalize">{{ offres.content}}</div>
+                </p>
+               
+               
+			</article>
+			
+			<!-- /Article -->
+			<!-- Sidebar -->
+			<aside class="col-sm-3 sidebar sidebar-right">
 
-        </div>
-    </article>
-    <br/> 
+				<div class="widget">
+					<img src="{{ offres.image }}" alt="" style="width:100%">
+			{#		<address>
+						6 idée pour améliorer l'expérience candidat ?
+					</address> #}
+				</div>
+
+			</aside>
+    </div>
+    
+    {% if is_granted('ROLE_ADMIN') %} 
+
+      
     {% if offres.recruteur %}
         <a class="btn btn-info" href="{{ path('offres_edit', {'id': offres.id}) }}">Modifier Votre Offre</a>
      {#   <a class="btn btn-danger" href="{{ path('offre_delete', {'id': offres.id}) }}">Supprimer Votre Offre</a> #}
+    {% endif %}
     {% endif %}
 
     {% if is_granted('ROLE_USER') %}  
@@ -32,3 +55,20 @@
 </div><br/><br/>
 
 {% endblock %}
+
+{#
+
+<div class="row">
+    <h1 class="col-md-7">{{ offres.title }}</h1>
+        <div class="col-md-7">
+        <p>Publier le <i class="fa fa-calendar"></i>{{ offres.createdAt | date('d/m/Y') }} à {{ offres.createdAt | date('H:i') }} dans la catégorie {{ offres.categorie.title }} </p>
+            A<i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{ offres.ville }}
+            <div class="col-md-12"><p>{{ offres.content | raw}}</p></div>
+        </div>
+        
+        <div class="col-md-5">
+            <img src="{{ offres.image }}" alt="" style="width:100%"><br/>
+        </div>
+    </div> 
+
+#}

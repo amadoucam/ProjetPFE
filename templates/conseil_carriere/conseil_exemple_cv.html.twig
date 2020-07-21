@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Exemple cv{% endblock title %}
+
+{% block body %}
+<br/>
+<br/>
+
+    <!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{{ path('home') }}">Home</a></li>
+			<li class="active">/Exemple CV</li>&nbsp;&nbsp;
+			{% include "flash_messages.html.twig" %}
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-9 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Les conseils pour un CV en alternance ou en apprentissage convaincant</h1>
+                    <p>Mr Conde | 17/03/2020</p>
+				</header>
+				
+				<p>
+                Que vous soyez dans un contexte de formation avec le contrat d'apprentissage ou de professionnalisation avec le contrat en alternance, votre objectif est le même : convaincre un employeur des bénéfices que vous apporterez à son entreprise.<br/>
+                Comment valoriser votre parcours en dépit d'une potentielle faible expérience ? Quels sont les éléments indispensables à votre CV et comment éviter une présentation trop scolaire ? Telles sont les questions à se poser pour trouver un emploi en alternance.</br>
+                Un défi que Monster vous aide à relever en vous proposant ce modèle de CV pour l'alternance ou l'apprentissage, à télécharger gratuitement. 
+				</p>
+				<br/><br/>
+                <h2>Le défi : un CV étoffé, avec peu d'expérience</h2>
+                <p>
+                Bien que le contrat de professionnalisation soit ouvert aux chômeurs de plus de 26 ans, dans la plupart des cas, les candidats sont étudiants et leur expérience professionnelle reste réduite. C'est pourquoi la recherche d'une entreprise pour un contrat d'apprentissage ou d'alternance s'apparente à la recherche d'un premier emploi, avec toutes les difficultés que cela comporte. Des obstacles cependant simples à contourner avec les bonnes techniques. Le principal a priori que les employeurs nourrissent à votre égard est celui d'être jeune et inexpérimenté. Il s'agit donc de prouver le contraire, grâce à votre CV pour l'apprentissage ou l'alternance couplé à votre lettre de motivation.
+                </p><br/>
+                <h2>La présentation de votre CV pour un poste en alternance ou en apprentissage</h2>
+                <p>
+                La première impression étant toujours importante, soignez la présentation de votre CV. Les recruteurs constatent encore l'abondance de CV pour l'apprentissage ou l'alternance trop scolaires, avec un style minimaliste. Sans tomber dans un délire de couleurs, adoptez une apparence moderne (c'est justement l'atout de votre jeunesse). Si vous le souhaitez, ajoutez une photo de qualité, sur laquelle vous posez de manière dynamique et professionnelle. Pensez à indiquer votre âge, puisque les salaires du contrat d'apprentissage ou de professionnalisation y sont indexés.
+                </p><br/><br/>
+                <h2>Exemple de CV pour un poste en alternance ou en apprentissage</h2>
+                <p>
+                Vous sollicitez un recruteur qui n’attend pas après vous. Pour retenir son attention immédiatement, commencez par énoncer dans le titre de votre CV, le poste que vous recherchez et ce, de façon brève et précise. C’est donc le moment de mettre en avant vos points forts. Dans « Le grand livre du CV », Patrice Ras écrit que c’est « la première des trois questions que se pose le recruteur (…) le titre de votre CV lui donne un sens ». Un peu plus loin il encourage à indiquer le poste que vous briguez même si c’est un poste supérieur. Après tout, vous avez choisi l’entreprise, vous êtes acteur, et non pas demandeur, alors osez !
+                </p><br/>
+
+                <p>
+                <a href="{{ asset('images/conseil-carriere/cv-apprentissage.docx') }}">
+                 Téléchargez gratuitement notre modèle de CV pour un poste en alternance ou en apprentissage.</a>
+                </a></p>
+                <a href="{{ asset('images/conseil-carriere/cv-apprentissage.docx') }}" download>
+                <img src="{{ asset('images/conseil-carriere/word.png') }}" alt="word" width="104" height="142">
+                </a><br/><br/><br/>
+
+                <p><br/>
+                <h1>Exemple Cv</h1><br/>
+                Noémie Delieux<br/>
+
+                Adresse : Rue, Code postal, Ville<br/>
+
+                E-mail : noemie.delieux@gmail.com | Téléphone : +33000000000<br/><br/>
+                Actuellement étudiante en Master 1 Économie et Management des Ressources Humaines, j'ai pu mettre en pratique mes connaissances lors d'un stage de cinq mois dans une grande entreprise. Je souhaite à présent poursuivre mon cursus de manière plus professionnelle. Je recherche donc un contrat de professionnalisation dans le cadre d'un Master 2, idéalement dans le secteur de l'économie participative. 
+                <h4><br/>Chargée de recrutement - En alternance<br/>
+                    FORMATION
+                </h4><br/>
+                2017-2018
+                <h4><br/>Master 1 Économie et Management des Ressources Humaines</h4><br/>
+                Université de Nice Sofia Antipolis, Nice
+                <h4><br/>PÔLES D’ENSEIGNEMENT</h4><br/>
+                <ul>
+                   <li>Macroéconomie Sociale et Politiques de l’Emploi</li>
+                   <li>Economie du Financement des Entreprises</li>
+                   <li>Psychologie du recrutement</li>
+                </ul><br/>
+                2017
+
+               <h4><br/>Licence Économie Gestion</h4><br/>
+               Université de Nice Sofia Antipolis, Nice<br/>
+               2014
+
+               <h4><br/>Baccalauréat économique et social</h4><br/>
+               Mention Très Bien<br/>
+
+               Lycée Massena, Nice
+
+               <h4><br/>EXPÉRIENCES PROFESSIONNELLES</h4><br/>
+               05/2018 - 09/2018
+
+               <h4><br/>Assistance Ressources humaines (stage), Franceverte, Nice</h4><br/>
+
+               Réseau de conseil et d'expertise comptable pour les professions rurales (350 collaborateurs). Assistante au sein d'une équipe RH de trois personnes.
+               <ul><br/>
+                   <li>Gestion administrative des dossiers du personnel (mise à jour des dossiers, contrôle des informations, utilisation du logiciel de paie...).</li>
+                   <li>Reporting RH (congés maternités, entrées et sorties, absences…).</li>
+                   <li>Organisation du planning des visites médicales des salariés.</li>
+                </ul><br/>
+                <h4><br/>AUTRES ACTIVITÉS</h4><br/>
+                Depuis 2016
+                <h4><br/>Secrétaire générale de l'association étudiante et culturelle Nicearts, Nice</h4><br/>
+                <ul>
+                   <li>Organisation des réunions et assemblées générales</li>
+                   <li>Comptes-rendus et plannings des activités du comité d'organisation</li>
+                   <li>Communication avec les adhérents</li>
+                </ul><br/>
+
+                <h4>AUTRES COMPÉTENCES</h4><br/>
+
+                Langues : anglais (courant) - espagnol (courant)<br/>
+
+                Pack Office, Réseaux sociaux<br/>
+
+                Maîtrise des sites Internet de recrutement<br/>
+
+ 
+
+                <h4><br/>CENTRES D’INTÉRÊT</h4><br/>
+
+                Pratique de la danse classique (5 ans de pratique)
+
+                </p>
+                
+			</article>
+			
+			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-3 sidebar sidebar-right">
+
+				<div class="widget">
+					<img src="{{ asset('images/conseil-carriere/conseils.jpg') }}" alt="">
+					<address>
+                    Quel CV pour une candidature spontanée ?
+					</address>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+		
+	</div>	<!-- /container --><br/><br/>
+
+{% endblock %}
+
+

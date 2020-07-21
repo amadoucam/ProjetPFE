@@ -6,7 +6,6 @@
 <br/>
 <br/>
 <br/>
-<br/>
 
 <div class="container">
     <h1 align = "center">Les offres D'emploi</h1>
@@ -17,8 +16,9 @@
         <h2><a href="{{ path('offres_annonce_show', {'id': offre.id}) }}">{{ offre.title }}</a></h2>
         <div class="metadata">Publier le <i class="fa fa-calendar"></i>{{ offre.createdAt | date('d/m/Y')}} à {{ offre.createdAt | date('H:i') }} dans la catégorie {{ offre.categorie.title }}</div>
         <div class="content">
-            <img src="{{ offre.image }}" alt="">
-             {{ offre.content | raw }}
+            <img src="{{ offre.image }}" alt="" style="width:50%"><br/>
+            <div class="text-break text-capitalize">{{ offre.content| raw}}</div>
+            <p> Dans la ville de <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{ offre.ville }}</p>
             <a href="{{ path('offres_annonce_show', {'id': offre.id}) }}" class="btn btn-info">Lire la suite</a>
         </div>
       </article><br/>

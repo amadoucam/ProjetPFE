@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class= "container">
+    {% if app.user %}
+    <br>
+    <br>
+    <br>
+{% for postuler in postulers  %}
+        {% if postuler.offre.id %} 
+
+        <strong><p>Ce Candidat à postuler à votre offre ✅: N°{{ postuler.offre.id }} &nbsp; <mark>{{ postuler.offre }}</mark></p> </strong>
+          <p><strong>Prénom:</strong> {{ postuler.user.nom }}</p>
+          <p><strong>Nom:</strong> {{ postuler.user.prenom }}</p>
+          <p><strong>Email:</strong> {{ postuler.user.email }}</p>
+          <p><strong>Téléphone:</strong> {{ postuler.user.tel }}</p>
+    {% else %}
+        <p><strong>Aucun Chercheur n'a postuler à votre offre</strong></p>
+    {% endif %}  
+    {% endfor %}  
+
+</div><br/>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Vous avez besoin de vous connecter avant !
+        </div>
+    {% endif %}
+ </div><br/><br/>
+
+{% endblock %}

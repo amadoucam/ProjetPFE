@@ -13,9 +13,24 @@
   <div class="card-body">
 
       <p><strong>  {{ postuler.firstname }} {{ postuler.lastname }}</strong></p>
-            <p>Tel : + {{ postuler.phone }}</p>
-            <p>E-mail : {{ postuler.email }}</p>
-      <strong> Vous avez postuler à cette offre ✅: &nbsp;<a href="{{ path('offres_annonce_show', {'id': offre.id}) }}"> <p> {{ postuler.offre }}</p> </a></strong>
+            <p><strong>Tel :</strong> + {{ postuler.phone }}</p>
+            <p><strong>E-mail :</strong> {{ postuler.email }}</p>
+      
+      {# <strong> Vous avez postuler à cette offre ✅: &nbsp; <p> {{ postuler.offre }} N {{ postuler.offre.content }}n 
+      <p>Publier le <i class="fa fa-calendar"></i>{{ postuler.offre.createdAt | date('d/m/Y') }} à {{ postuler.offre.createdAt | date('H:i') }} dans la catégorie {{ postuler.offre.categorie.title }} </p>
+      {{ postuler.offre.ville }} <img src="{{ postuler.offre.image }}" alt="" style="width:100%"><br/></p></strong> #}
+      <p>Vous avez postuler à cette offre ✅: </p>
+      <div class="row">
+    <h1 class="col-md-12">{{ postuler.offre.title }}</h1>
+        <div class="col-md-12">
+        <p>Publier le <i class="fa fa-calendar"></i>{{ postuler.offre.createdAt | date('d/m/Y') }} à {{ postuler.offre.createdAt | date('H:i') }} dans la catégorie {{ postuler.offre.categorie.title }} </p>
+            Dans la ville de&nbsp;<i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{ postuler.offre.ville }}
+            <p>{{ postuler.offre.content | raw }}</p>
+        </div>
+        <div class="col-md-5">
+            <img src="{{ postuler.offre.image }}" alt="" style="width:150%"><br/>
+        </div>
+    </div> <br/><br/>
       <h3>L'entreprise vous contactera après Merci!!!</h3>
 
   </div>

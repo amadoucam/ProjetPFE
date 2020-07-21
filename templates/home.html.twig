@@ -22,11 +22,11 @@
         <div class="row no-gutters">
           <div class="content col-xl-5 d-flex align-items-stretch" data-aos="fade-up">
             <div class="content">
-              <h3>Voluptatem dignissimos provident quasi</h3>
+              <h3>Un site de recrutement à votre service</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                Pour Plus d'information vous pouvez nous contactez!
               </p>
-              <a href="#" class="about-btn">About us <i class="bx bx-chevron-right"></i></a>
+              <a href="{{ path('contact') }}" class="about-btn">Contacter-nous<i class="bx bx-chevron-right"></i></a>
             </div>
           </div>
           <div class="col-xl-7 d-flex align-items-stretch">
@@ -65,40 +65,31 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-in" data-aos-delay="100">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
         <div class="row">
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <a href="{{ path('conseil_carriere') }}"><div class="icon"><i class="bx bx-file"></i></div></a>
+              <h4 class="title"><a href="{{ path('conseil_carriere') }}">Conseil Carrière Candidat</a></h4>
+              <p class="description">CV, lettre de motivation, entretiens... nos conseils pour trouver mieux !</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <a href="{{ path('conseil_recruteur') }}"><div class="icon"><i class="bx bx-tachometer"></i></div></a>
+              <h4 class="title"><a href="{{ path('conseil_recruteur') }}">Conseil Entreprise</a></h4>
+              <p class="description">6 choses à faire après la publication de l’offre d’emploi</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <a href="{{ path('conseil_idees') }}"><div class="icon"><i class="bx bx-world"></i></div></a>
+              <h4 class="title"><a href="{{ path('conseil_idees') }}">Entretien</a></h4>
+              <p class="description">Entretien : 6 idées pour améliorer l’expérience candidat</p>
             </div>
           </div>
 

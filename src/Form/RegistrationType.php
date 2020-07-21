@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class RegistrationType extends AbstractType
 {
@@ -41,7 +42,7 @@ class RegistrationType extends AbstractType
             ->add('nationalite', CountryType::class)
             ->add('postal_code', NumberType::class)
             ->add('adresse', TextType::class)
-            ->add('tel')
+            ->add('tel',TelType::class)
             ->add('avatar', FileType::class)
             ->add('cv', FileType::class, [
                 'label' => 'Document (PDF file)',
